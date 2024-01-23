@@ -58,6 +58,8 @@ class GameViewModel: ObservableObject {
         if allLettersUsed {
             score += 10
         }
+        
+        currentWord = ""
     }
     
     func deleteWord() {

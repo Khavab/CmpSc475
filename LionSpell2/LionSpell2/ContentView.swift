@@ -37,7 +37,6 @@ struct ContentView: View {
 struct TopHeaderView: View {
     var body: some View {
         HStack {
-            Image("AppIcon")
             Spacer()
             Text("Lion Spell")
                 .font(.title)
@@ -130,6 +129,7 @@ struct GameOptionsView: View {
             HStack(spacing: 10) {
                 ControlButton(label: "Show Hint", systemImage: "questionmark.circle", action: showHint)
                     .frame(width: (geometry.size.width - 20) / 3)
+                    .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                 ControlButton(label: "New Game", systemImage: "plus.circle", action: newGame)
                     .frame(width: (geometry.size.width - 20) / 3)
                 ControlButton(label: "Shuffle", systemImage: "shuffle.circle", action: shuffle)
