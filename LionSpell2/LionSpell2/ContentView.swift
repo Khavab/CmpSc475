@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var gameManager = GameViewModel()
     var body: some View {
         ZStack {
             Color(red: 230/256, green: 164/256, blue: 180/256).ignoresSafeArea()
@@ -15,14 +16,16 @@ struct ContentView: View {
                     .padding(.top, 10)
                 
                 DiscoveredWordsView()
-                
-                CurrentWordView()
                     .padding(.top, 10)
                 
-                AlphabetButtonsView()
+                CurrentWordView(currentWord: gameManager.currentWord)
                     .padding(.top, 10)
                 
-                ActionButtonsView(Action: {})
+                AlphabetButtonsView(addLetter: gameManager.addLetter)
+                    .padding(.top, 10)
+                
+                ActionButtonsView(submitAction: gameManager.submitWord,
+                                  deleteAction: gameManager.deleteWord)
             }
             .padding()
         }
@@ -46,7 +49,7 @@ struct TopHeaderView: View {
 struct PointsView: View {
     var body: some View {
         HStack {
-            Text("38")
+            Text("0")
                 .font(.title)
                 .fontWeight(.bold)
             Text("points")
@@ -62,16 +65,6 @@ struct DiscoveredWordsView: View {
         VStack(alignment: .leading, spacing: 10) {
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: 5) {
-                    Text("Word")
-                        .font(.title)
-                    Text("Word")
-                        .font(.title)
-                    Text("Word")
-                        .font(.title)
-                    Text("Word")
-                        .font(.title)
-                    Text("Word")
-                        .font(.title)
                 }
                 .padding(.horizontal)
             }
@@ -84,8 +77,9 @@ struct DiscoveredWordsView: View {
 }
 
 struct CurrentWordView: View {
+    var currentWord: String
     var body: some View {
-        Text("Current word")
+        Text(currentWord)
             .font(.title)
             .frame(maxWidth: .infinity)
             .frame(height:70)
@@ -96,18 +90,22 @@ struct CurrentWordView: View {
 }
 
 struct AlphabetButtonsView: View {
+    var addLetter: (String) -> Void
     var body: some View {
         HStack(spacing: 5) {
             ForEach(spellLetters) { letter in
-                Button(letter.letter) {}
-                    .frame(width: 70, height: 70)
-                    .foregroundColor(.white)
-                    .background(Color(red: 176/256, green: 97/256, blue: 97/256))
-                    .cornerRadius(5)
+                Button(action: { addLetter(letter.letter) }) {
+                    Text(letter.letter)
+                        .frame(width: 70, height: 70)
+                        .foregroundColor(.white)
+                        .background(Color(red: 176/256, green: 97/256, blue: 97/256))
+                        .cornerRadius(5)
+                }
             }
         }
     }
 }
+
 
 struct GameOptionsView: View {
     var body: some View {
@@ -149,18 +147,19 @@ struct ControlButton: View {
 }
 
 struct ActionButtonsView: View {
-    let Action: () -> Void
+    let submitAction: () -> Void
+    let deleteAction: () -> Void
 
     var body: some View {
         HStack {
-            Button(action: Action) {
+            Button(action: deleteAction) {
                 Label("Delete", systemImage: "delete.right.fill")
             }
             .buttonStyle(StyledButton(backgroundColor: .red))
 
             Spacer()
 
-            Button(action: Action) {
+            Button(action: submitAction) {
                 Label("Submit", systemImage: "checkmark.circle.fill")
             }
             .buttonStyle(StyledButton(backgroundColor: .green))
