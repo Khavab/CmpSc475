@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            Color(red: 0.9, green: 0.9, blue: 0.9).ignoresSafeArea()
+            Color(red: 230/256, green: 164/256, blue: 180/256).ignoresSafeArea()
             
             VStack(spacing: 15) {
                 HeaderView()
@@ -69,28 +69,37 @@ struct ScoreView: View {
 struct FoundWordsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Found Words")
-                .font(.headline)
-            
-            Text("- Words")
-            Text("- Words")
-            Text("- Words")
-            Text("- Words")
-            
-            Spacer()
+            ScrollView(.horizontal, showsIndicators: true) {
+                HStack(spacing: 5) {
+                    Text("Word")
+                        .font(.title)
+                    Text("Word")
+                        .font(.title)
+                    Text("Word")
+                        .font(.title)
+                    Text("Word")
+                        .font(.title)
+                    Text("Word")
+                        .font(.title)
+
+                }
+                .padding(.horizontal)
+            }
+            .frame(height: 100)
         }
-        .padding()
-        .frame(width: 350)
-        .background(Color.white)
+        .background(Color(red: 243/256, green: 215/256, blue: 202/256))
         .cornerRadius(10)
+        .frame(width: 350)
     }
 }
+
+
 
 struct CurrentWordView: View {
     var body: some View {
         Text("Current word")
             .frame(maxWidth: .infinity)
-            .background(Color.gray)
+            .background(Color(red: 245/256, green: 236/256, blue: 230/256))
             .cornerRadius(10)
             .padding(.horizontal, 10)
     }
@@ -101,9 +110,9 @@ struct LetterButtons: View {
         HStack(spacing: 5) {
             ForEach(activeLetters) { letter in
                 Button(letter.letter) {}
-                    .frame(width: 50, height: 50)
+                    .frame(width: 70, height: 70)
                     .foregroundColor(.white)
-                    .background(Color.orange)
+                    .background(Color(red: 176/256, green: 97/256, blue: 97/256))
                     .cornerRadius(5)
             }
         }
@@ -129,11 +138,13 @@ struct GameControlButton: View {
         Button(action: action) {
             HStack {
                 Image(systemName: systemImage)
+                    .foregroundColor(Color(red: 176/256, green: 97/256, blue: 97/256))
                 Text(label)
+                    .foregroundColor(Color(red: 176/256, green: 97/256, blue: 97/256))
             }
             .padding()
             .frame(maxWidth: .infinity)
-            .background(Color.blue)
+            .background(Color(red: 255/256, green: 248/256, blue: 227/256))
             .foregroundColor(.white)
             .cornerRadius(15)
         }
