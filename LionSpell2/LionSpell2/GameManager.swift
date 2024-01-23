@@ -10,10 +10,16 @@ import SwiftUI
 
 class GameViewModel: ObservableObject {
     @Published var score: Int = 0
-    @Published var foundWords: [String] = []
-    @Published var currentWord: String = ""
-    private var seen: [String] = []
-    private var size: Int = 0
+    @Published var foundWords: [String] = [] {
+            didSet {
+                updateIsValid()
+            }
+        }
+    @Published var currentWord: String = "" {
+            didSet {
+                updateIsValid()
+            }
+        }
     
     let spellLetters = [
         SpellLetter(letter: "A"), SpellLetter(letter: "B"), SpellLetter(letter: "C"),
@@ -27,24 +33,44 @@ class GameViewModel: ObservableObject {
         SpellLetter(letter: "Y"), SpellLetter(letter: "Z")
     ]
     @Published var letters: [SpellLetter] = []
+    
+    @Published var isValid: Bool = false
+    
             
     init(size: Int) {
         newGame()
     }
 
     func submitWord() {
-        if Words.words.contains(currentWord.lowercased()) && !seen.contains(currentWord.lowercased()) {
+        foundWords.append(currentWord.lowercased())
+        if currentWord.count == 4 {
+            score += 1
+        }
+        else {
             score += currentWord.count
-            seen.append(currentWord.lowercased())
+        }
+        
+        let currentWordLetters = Set(currentWord.lowercased())
+        let allLettersUsed = letters.allSatisfy { letter in
+            currentWordLetters.contains(letter.letter.lowercased())
+        }
+
+        if allLettersUsed {
+            score += 10
         }
     }
     
     func deleteWord() {
-        currentWord = ""
+        currentWord = String(currentWord.dropLast())
     }
     
     func addLetter(char: String) {
+        isValid =  Words.words.contains(currentWord.lowercased()) && !foundWords.contains(currentWord.lowercased())
         currentWord = currentWord + char
+    }
+    
+    func updateIsValid() {
+            isValid = Words.words.contains(currentWord.lowercased()) && !foundWords.contains(currentWord.lowercased())
     }
     
     func showHint() {
@@ -56,7 +82,8 @@ class GameViewModel: ObservableObject {
         foundWords = []
         currentWord = ""
         letters = []
-        while letters.count < 10 {
+        isValid = false
+        while letters.count < 5 {
             let newLetter = spellLetters[Int.random(in: 0..<spellLetters.count)]
             if !letters.contains(where: { $0.letter == newLetter.letter }) {
                 letters.append(newLetter)

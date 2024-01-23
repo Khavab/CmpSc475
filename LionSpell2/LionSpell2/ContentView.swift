@@ -15,7 +15,7 @@ struct ContentView: View {
                 PointsView(score: gameManager.score)
                     .padding(.top, 10)
                 
-                DiscoveredWordsView()
+                DiscoveredWordsView(foundWords: gameManager.foundWords)
                     .padding(.top, 10)
                 
                 CurrentWordView(currentWord: gameManager.currentWord)
@@ -25,7 +25,9 @@ struct ContentView: View {
                     .padding(.top, 10)
                 
                 ActionButtonsView(submitAction: gameManager.submitWord,
-                                  deleteAction: gameManager.deleteWord)
+                                  deleteAction: gameManager.deleteWord,
+                                  isValid: gameManager.isValid,
+                                  currentWord: gameManager.currentWord)
             }
             .padding()
         }
@@ -62,10 +64,18 @@ struct PointsView: View {
 }
 
 struct DiscoveredWordsView: View {
+    var foundWords: [String]
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: 5) {
+                    ForEach(foundWords, id: \.self) { word in
+                        Text(word)
+                            .padding(5)
+                            .background(Color.white)
+                            .cornerRadius(5)
+                    }
                 }
                 .padding(.horizontal)
             }
@@ -76,6 +86,7 @@ struct DiscoveredWordsView: View {
         .frame(width: 350)
     }
 }
+
 
 struct CurrentWordView: View {
     var currentWord: String
@@ -95,18 +106,7 @@ struct AlphabetButtonsView: View {
     var spellLetters: [SpellLetter]
     var body: some View {
         HStack(spacing: 5) {
-            ForEach(spellLetters[..<5]) { letter in
-                Button(action: { addLetter(letter.letter) }) {
-                    Text(letter.letter)
-                        .frame(width: 70, height: 70)
-                        .foregroundColor(.white)
-                        .background(Color(red: 176/256, green: 97/256, blue: 97/256))
-                        .cornerRadius(5)
-                }
-            }
-        }
-        HStack(spacing: 5) {
-            ForEach(spellLetters[5...]) { letter in
+            ForEach(spellLetters) { letter in
                 Button(action: { addLetter(letter.letter) }) {
                     Text(letter.letter)
                         .frame(width: 70, height: 70)
@@ -166,6 +166,8 @@ struct ControlButton: View {
 struct ActionButtonsView: View {
     let submitAction: () -> Void
     let deleteAction: () -> Void
+    let isValid: Bool
+    let currentWord: String
 
     var body: some View {
         HStack {
@@ -173,6 +175,7 @@ struct ActionButtonsView: View {
                 Label("Delete", systemImage: "delete.right.fill")
             }
             .buttonStyle(StyledButton(backgroundColor: .red))
+            .disabled(currentWord.count == 0)
 
             Spacer()
 
@@ -180,6 +183,7 @@ struct ActionButtonsView: View {
                 Label("Submit", systemImage: "checkmark.circle.fill")
             }
             .buttonStyle(StyledButton(backgroundColor: .green))
+            .disabled(!isValid)
         }
     }
 }
