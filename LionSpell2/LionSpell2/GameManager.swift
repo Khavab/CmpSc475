@@ -20,43 +20,19 @@ class GameViewModel: ObservableObject {
         }
     }
     
-    let spellLetters = [
-        SpellLetter(letter: "A"), SpellLetter(letter: "B"), SpellLetter(letter: "C"),
-        SpellLetter(letter: "D"), SpellLetter(letter: "E"), SpellLetter(letter: "F"),
-        SpellLetter(letter: "G"), SpellLetter(letter: "H"), SpellLetter(letter: "I"),
-        SpellLetter(letter: "J"), SpellLetter(letter: "K"), SpellLetter(letter: "L"),
-        SpellLetter(letter: "M"), SpellLetter(letter: "N"), SpellLetter(letter: "O"),
-        SpellLetter(letter: "P"), SpellLetter(letter: "Q"), SpellLetter(letter: "R"),
-        SpellLetter(letter: "S"), SpellLetter(letter: "T"), SpellLetter(letter: "U"),
-        SpellLetter(letter: "V"), SpellLetter(letter: "W"), SpellLetter(letter: "X"),
-        SpellLetter(letter: "Y"), SpellLetter(letter: "Z")]
-    @Published var letters: [SpellLetter] = []
     
+    @Published var letters: [SpellLetter] = []
     @Published var isValid: Bool = false
     
+    @Published var scramble: Scramble = Scramble(size: 0, words: Words.words)
             
     init(size: Int) {
         newGame()
     }
 
     func submitWord() {
+        score += scramble.wordScore(currentWord: currentWord)
         foundWords.append(currentWord.lowercased())
-        if currentWord.count == 4 {
-            score += 1
-        }
-        else {
-            score += currentWord.count
-        }
-        
-        let currentWordLetters = Set(currentWord.lowercased())
-        let allLettersUsed = letters.allSatisfy { letter in
-            currentWordLetters.contains(letter.letter.lowercased())
-        }
-
-        if allLettersUsed {
-            score += 10
-        }
-        
         currentWord = ""
     }
     
@@ -70,7 +46,7 @@ class GameViewModel: ObservableObject {
     }
     
     private func updateIsValid() {
-            isValid = Words.words.contains(currentWord.lowercased()) && !foundWords.contains(currentWord.lowercased())
+        isValid = scramble.isValid(currentWord: currentWord, foundWords: foundWords)
     }
     
     func showHint() {
@@ -78,36 +54,19 @@ class GameViewModel: ObservableObject {
     }
     
     func newGame() {
+        scramble = Scramble(size: 5, words: Words.words)
+        letters = scramble.letters
+        shuffleLetters()
         score = 0
         foundWords = []
         currentWord = ""
         isValid = false
-        newLetters()
-    }
-    
-    private func newLetters() {
-        letters.removeAll()
-        let uniqueFiveLetterWords = Words.words.filter {
-            $0.count == 5 && Set($0).count == 5
-        }
-        let selectedWord = uniqueFiveLetterWords.randomElement() ?? "error"
-        let selectedLetters = Array(selectedWord.uppercased())
-
-
-        for char in selectedLetters {
-            if let spellLetter = spellLetters.first(where: { $0.letter == String(char) }) {
-                letters.append(spellLetter)
-            }
-        }
         
-        shuffleLetters()
     }
 
     func shuffleLetters() {
         letters.shuffle()
     }
-
-
 }
 
 struct SpellLetter: Identifiable {
