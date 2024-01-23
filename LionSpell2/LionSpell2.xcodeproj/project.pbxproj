@@ -15,6 +15,7 @@
 		F2A1FA5D2B5F94E500149262 /* LionSpell2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA5C2B5F94E500149262 /* LionSpell2UITests.swift */; };
 		F2A1FA5F2B5F94E500149262 /* LionSpell2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA5E2B5F94E500149262 /* LionSpell2UITestsLaunchTests.swift */; };
 		F2A1FA6C2B5FAD8800149262 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA6B2B5FAD8800149262 /* GameManager.swift */; };
+		F2A1FA6E2B5FB75100149262 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA6D2B5FB75100149262 /* Words.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		F2A1FA5C2B5F94E500149262 /* LionSpell2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LionSpell2UITests.swift; sourceTree = "<group>"; };
 		F2A1FA5E2B5F94E500149262 /* LionSpell2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LionSpell2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F2A1FA6B2B5FAD8800149262 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		F2A1FA6D2B5FB75100149262 /* Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				F2A1FA452B5F94E500149262 /* Assets.xcassets */,
 				F2A1FA472B5F94E500149262 /* Preview Content */,
 				F2A1FA6B2B5FAD8800149262 /* GameManager.swift */,
+				F2A1FA6D2B5FB75100149262 /* Words.swift */,
 			);
 			path = LionSpell2;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2A1FA442B5F94E300149262 /* ContentView.swift in Sources */,
+				F2A1FA6E2B5FB75100149262 /* Words.swift in Sources */,
 				F2A1FA6C2B5FAD8800149262 /* GameManager.swift in Sources */,
 				F2A1FA422B5F94E300149262 /* LionSpell2App.swift in Sources */,
 			);

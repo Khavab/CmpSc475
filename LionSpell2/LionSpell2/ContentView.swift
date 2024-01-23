@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var gameManager = GameViewModel()
+    @StateObject var gameManager = GameViewModel(size: 5)
     var body: some View {
         ZStack {
             Color(red: 230/256, green: 164/256, blue: 180/256).ignoresSafeArea()
@@ -9,10 +9,10 @@ struct ContentView: View {
             VStack(spacing: 15) {
                 TopHeaderView()
                 
-                GameOptionsView()
+                GameOptionsView(showHint: gameManager.showHint, newGame: gameManager.newGame, shuffle: gameManager.shuffleLetters)
                     .padding(.top, 10)
                 
-                PointsView()
+                PointsView(score: gameManager.score)
                     .padding(.top, 10)
                 
                 DiscoveredWordsView()
@@ -21,7 +21,7 @@ struct ContentView: View {
                 CurrentWordView(currentWord: gameManager.currentWord)
                     .padding(.top, 10)
                 
-                AlphabetButtonsView(addLetter: gameManager.addLetter)
+                AlphabetButtonsView(addLetter: gameManager.addLetter, spellLetters: gameManager.letters)
                     .padding(.top, 10)
                 
                 ActionButtonsView(submitAction: gameManager.submitWord,
@@ -47,9 +47,10 @@ struct TopHeaderView: View {
 }
 
 struct PointsView: View {
+    var score: Int
     var body: some View {
         HStack {
-            Text("0")
+            Text(String(score))
                 .font(.title)
                 .fontWeight(.bold)
             Text("points")
@@ -91,9 +92,21 @@ struct CurrentWordView: View {
 
 struct AlphabetButtonsView: View {
     var addLetter: (String) -> Void
+    var spellLetters: [SpellLetter]
     var body: some View {
         HStack(spacing: 5) {
-            ForEach(spellLetters) { letter in
+            ForEach(spellLetters[..<5]) { letter in
+                Button(action: { addLetter(letter.letter) }) {
+                    Text(letter.letter)
+                        .frame(width: 70, height: 70)
+                        .foregroundColor(.white)
+                        .background(Color(red: 176/256, green: 97/256, blue: 97/256))
+                        .cornerRadius(5)
+                }
+            }
+        }
+        HStack(spacing: 5) {
+            ForEach(spellLetters[5...]) { letter in
                 Button(action: { addLetter(letter.letter) }) {
                     Text(letter.letter)
                         .frame(width: 70, height: 70)
@@ -108,14 +121,18 @@ struct AlphabetButtonsView: View {
 
 
 struct GameOptionsView: View {
+    let showHint: () -> Void
+    let newGame: () -> Void
+    let shuffle: () -> Void
+    
     var body: some View {
         GeometryReader { geometry in
             HStack(spacing: 10) {
-                ControlButton(label: "Show Hint", systemImage: "questionmark.circle", action: {})
+                ControlButton(label: "Show Hint", systemImage: "questionmark.circle", action: showHint)
                     .frame(width: (geometry.size.width - 20) / 3)
-                ControlButton(label: "New Game", systemImage: "plus.circle", action: {})
+                ControlButton(label: "New Game", systemImage: "plus.circle", action: newGame)
                     .frame(width: (geometry.size.width - 20) / 3)
-                ControlButton(label: "Shuffle", systemImage: "shuffle.circle", action: {})
+                ControlButton(label: "Shuffle", systemImage: "shuffle.circle", action: shuffle)
                     .frame(width: (geometry.size.width - 20) / 3)
             }
         }
@@ -167,18 +184,7 @@ struct ActionButtonsView: View {
     }
 }
 
-struct SpellLetter: Identifiable {
-    let letter: String
-    let id = UUID()
-}
 
-let spellLetters = [
-    SpellLetter(letter: "A"),
-    SpellLetter(letter: "B"),
-    SpellLetter(letter: "C"),
-    SpellLetter(letter: "D"),
-    SpellLetter(letter: "E")
-]
 
 struct StyledButton: ButtonStyle {
     var backgroundColor: Color
