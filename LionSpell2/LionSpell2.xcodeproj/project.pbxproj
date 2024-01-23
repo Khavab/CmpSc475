@@ -116,13 +116,12 @@
 			isa = PBXGroup;
 			children = (
 				F2A1FA452B5F94E500149262 /* Assets.xcassets */,
-				F2A1FA6B2B5FAD8800149262 /* GameManager.swift */,
 				F2A1FA412B5F94E300149262 /* LionSpell2App.swift */,
 				F2A1FA512B5F94E500149262 /* LionSpell2Tests */,
 				F2A1FA472B5F94E500149262 /* Preview Content */,
+				F2A1FA862B60230500149262 /* ViewModels */,
 				F2A1FA7F2B600B7D00149262 /* Views */,
 				F2A1FA832B60177A00149262 /* ViewConstants */,
-				F2A1FA842B601BD900149262 /* Scramble.swift */,
 			);
 			path = LionSpell2;
 			sourceTree = "<group>";
@@ -174,6 +173,15 @@
 				F2A1FA802B600FA300149262 /* Colors.swift */,
 			);
 			path = ViewConstants;
+			sourceTree = "<group>";
+		};
+		F2A1FA862B60230500149262 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F2A1FA6B2B5FAD8800149262 /* GameManager.swift */,
+				F2A1FA842B601BD900149262 /* Scramble.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -20,10 +20,8 @@ class GameViewModel: ObservableObject {
         }
     }
     
-    
     @Published var letters: [SpellLetter] = []
     @Published var isValid: Bool = false
-    
     @Published var scramble: Scramble = Scramble(size: 0, words: Words.words)
             
     init(size: Int) {

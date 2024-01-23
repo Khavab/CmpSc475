@@ -25,7 +25,7 @@ struct Scramble {
     init(size: Int, words: [String]){
         var temp: [SpellLetter] = []
         let uniqueFiveLetterWords = Words.words.filter {
-            $0.count == 5 && Set($0).count == 5
+            $0.count == size && Set($0).count == size
         }
         let selectedWord = uniqueFiveLetterWords.randomElement() ?? "error"
         let selectedLetters = Array(selectedWord.uppercased())
