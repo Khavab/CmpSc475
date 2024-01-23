@@ -25,7 +25,7 @@ struct Scramble {
     init(size: Int, words: [String]){
         var temp: [SpellLetter] = []
         let uniqueFiveLetterWords = words.filter {
-            $0.count == size && Set($0).count == size
+            $0.count == 5 && Set($0).count == 5
         }
         let selectedWord = uniqueFiveLetterWords.randomElement() ?? "error"
         let selectedLetters = Array(selectedWord.uppercased())
@@ -38,8 +38,13 @@ struct Scramble {
         }
         
         self.letters = temp
-        self.words = words
-    }
+        
+        let allowedCharacterSet = CharacterSet(charactersIn: Set(self.letters.map { $0.letter }).joined().lowercased())
+        self.words = words.filter { word in
+            let wordCharacterSet = CharacterSet(charactersIn: word)
+            return allowedCharacterSet.isSuperset(of: wordCharacterSet)
+        }
+}
     
     func isValid(currentWord: String, foundWords: [String]) -> Bool {
         return Words.words.contains(currentWord.lowercased()) && !foundWords.contains(currentWord.lowercased())
@@ -55,7 +60,7 @@ struct Scramble {
         }
         
         let currentWordLetters = Set(currentWord.lowercased())
-        let allLettersUsed = letters.allSatisfy { letter in
+        let allLettersUsed = self.letters.allSatisfy { letter in
             currentWordLetters.contains(letter.letter.lowercased())
         }
 
