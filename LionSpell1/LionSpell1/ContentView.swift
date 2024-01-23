@@ -15,22 +15,23 @@ struct ContentView: View {
             VStack(spacing: 15) {
                 HeaderView()
                 
-                ScoreView()
-                    .padding(.top, 10)
-
                 GameControlButtons()
+                    .padding(.top, 10)
+                
+                ScoreView()
                     .padding(.top, 10)
                 
                 FoundWordsView()
                 
                 CurrentWordView()
                     .padding(.top, 10)
-
-                DeleteSubmitView(Action: {})
-                    .padding(.top, 10)
-
+                
                 LetterButtons()
-                    .padding(.bottom, 20)
+                    .padding(.top, 10)
+                
+                DeleteSubmitView(Action: {})
+
+                
             }
             .padding()
         }
@@ -54,7 +55,7 @@ struct HeaderView: View {
 struct ScoreView: View {
     var body: some View {
         HStack {
-            Text("3500")
+            Text("38")
                 .font(.title)
                 .fontWeight(.bold)
             Text("points")
@@ -71,11 +72,15 @@ struct FoundWordsView: View {
             Text("Found Words")
                 .font(.headline)
             
-            Text("- List of words found by user")
-            Text("- Another word")
+            Text("- Words")
+            Text("- Words")
+            Text("- Words")
+            Text("- Words")
+            
             Spacer()
         }
         .padding()
+        .frame(width: 350)
         .background(Color.white)
         .cornerRadius(10)
     }
@@ -93,13 +98,13 @@ struct CurrentWordView: View {
 
 struct LetterButtons: View {
     var body: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 5) {
             ForEach(activeLetters) { letter in
                 Button(letter.letter) {}
                     .frame(width: 50, height: 50)
                     .foregroundColor(.white)
                     .background(Color.orange)
-                    .cornerRadius(25)
+                    .cornerRadius(5)
             }
         }
     }
