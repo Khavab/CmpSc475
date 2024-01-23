@@ -69,7 +69,7 @@ class GameViewModel: ObservableObject {
         currentWord = currentWord + char
     }
     
-    func updateIsValid() {
+    private func updateIsValid() {
             isValid = Words.words.contains(currentWord.lowercased()) && !foundWords.contains(currentWord.lowercased())
     }
     
@@ -81,14 +81,26 @@ class GameViewModel: ObservableObject {
         score = 0
         foundWords = []
         currentWord = ""
-        letters = []
         isValid = false
-        while letters.count < 5 {
-            let newLetter = spellLetters[Int.random(in: 0..<spellLetters.count)]
-            if !letters.contains(where: { $0.letter == newLetter.letter }) {
-                letters.append(newLetter)
+        newLetters()
+    }
+    
+    private func newLetters() {
+        letters.removeAll()
+        let uniqueFiveLetterWords = Words.words.filter {
+            $0.count == 5 && Set($0).count == 5
+        }
+        let selectedWord = uniqueFiveLetterWords.randomElement() ?? "error"
+        let selectedLetters = Array(selectedWord.uppercased())
+
+
+        for char in selectedLetters {
+            if let spellLetter = spellLetters.first(where: { $0.letter == String(char) }) {
+                letters.append(spellLetter)
             }
         }
+        
+        shuffleLetters()
     }
 
     func shuffleLetters() {
