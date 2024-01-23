@@ -29,22 +29,22 @@ struct GameOptionsView: View {
 }
 
 struct ControlButton: View {
-    var label: String
-    var systemImage: String
-    var action: () -> Void
+    let label: String
+    let systemImage: String
+    let action: () -> Void
 
     var body: some View {
         Button(action: action) {
             HStack {
                 Image(systemName: systemImage)
-                    .foregroundColor(Color(red: 176/256, green: 97/256, blue: 97/256))
+                    .foregroundColor(Color.primaryLightColor)
                 Text(label)
-                    .foregroundColor(Color(red: 176/256, green: 97/256, blue: 97/256))
+                    .foregroundColor(Color.primaryLightColor)
             }
             .padding()
             .frame(maxWidth: .infinity)
             .frame(height: 80)
-            .background(Color(red: 255/256, green: 248/256, blue: 227/256))
+            .background(Color.primaryButtonColor)
             .foregroundColor(.white)
             .cornerRadius(15)
         }

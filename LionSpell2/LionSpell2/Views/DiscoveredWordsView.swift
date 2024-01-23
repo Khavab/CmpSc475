@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DiscoveredWordsView: View {
-    var foundWords: [String]
+    let foundWords: [String]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -25,7 +25,7 @@ struct DiscoveredWordsView: View {
             }
             .frame(height: 100)
         }
-        .background(Color(red: 243/256, green: 215/256, blue: 202/256))
+        .background(Color.discoveredWordBG)
         .cornerRadius(10)
         .frame(width: 350)
     }

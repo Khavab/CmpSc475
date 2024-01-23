@@ -23,6 +23,7 @@
 		F2A1FA7A2B600A2100149262 /* GameOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA792B600A2100149262 /* GameOptionsView.swift */; };
 		F2A1FA7C2B600AD100149262 /* ActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA7B2B600AD100149262 /* ActionButtonsView.swift */; };
 		F2A1FA7E2B600B3100149262 /* TopHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA7D2B600B3100149262 /* TopHeaderView.swift */; };
+		F2A1FA812B600FA300149262 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA802B600FA300149262 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		F2A1FA792B600A2100149262 /* GameOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOptionsView.swift; sourceTree = "<group>"; };
 		F2A1FA7B2B600AD100149262 /* ActionButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonsView.swift; sourceTree = "<group>"; };
 		F2A1FA7D2B600B3100149262 /* TopHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeaderView.swift; sourceTree = "<group>"; };
+		F2A1FA802B600FA300149262 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +119,7 @@
 				F2A1FA512B5F94E500149262 /* LionSpell2Tests */,
 				F2A1FA472B5F94E500149262 /* Preview Content */,
 				F2A1FA7F2B600B7D00149262 /* Views */,
-				F2A1FA6D2B5FB75100149262 /* Words.swift */,
+				F2A1FA832B60177A00149262 /* ViewConstants */,
 			);
 			path = LionSpell2;
 			sourceTree = "<group>";
@@ -160,6 +162,15 @@
 				F2A1FA7D2B600B3100149262 /* TopHeaderView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F2A1FA832B60177A00149262 /* ViewConstants */ = {
+			isa = PBXGroup;
+			children = (
+				F2A1FA6D2B5FB75100149262 /* Words.swift */,
+				F2A1FA802B600FA300149262 /* Colors.swift */,
+			);
+			path = ViewConstants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2A1FA7C2B600AD100149262 /* ActionButtonsView.swift in Sources */,
+				F2A1FA812B600FA300149262 /* Colors.swift in Sources */,
 				F2A1FA442B5F94E300149262 /* ContentView.swift in Sources */,
 				F2A1FA762B60095900149262 /* CurrentWordView.swift in Sources */,
 				F2A1FA742B60093800149262 /* DiscoveredWordsView.swift in Sources */,

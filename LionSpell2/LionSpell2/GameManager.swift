@@ -10,15 +10,15 @@ import Foundation
 class GameViewModel: ObservableObject {
     @Published var score: Int = 0
     @Published var foundWords: [String] = [] {
-            didSet {
-                updateIsValid()
-            }
+        didSet {
+            updateIsValid()
         }
+    }
     @Published var currentWord: String = "" {
-            didSet {
-                updateIsValid()
-            }
+        didSet {
+            updateIsValid()
         }
+    }
     
     let spellLetters = [
         SpellLetter(letter: "A"), SpellLetter(letter: "B"), SpellLetter(letter: "C"),
@@ -29,8 +29,7 @@ class GameViewModel: ObservableObject {
         SpellLetter(letter: "P"), SpellLetter(letter: "Q"), SpellLetter(letter: "R"),
         SpellLetter(letter: "S"), SpellLetter(letter: "T"), SpellLetter(letter: "U"),
         SpellLetter(letter: "V"), SpellLetter(letter: "W"), SpellLetter(letter: "X"),
-        SpellLetter(letter: "Y"), SpellLetter(letter: "Z")
-    ]
+        SpellLetter(letter: "Y"), SpellLetter(letter: "Z")]
     @Published var letters: [SpellLetter] = []
     
     @Published var isValid: Bool = false

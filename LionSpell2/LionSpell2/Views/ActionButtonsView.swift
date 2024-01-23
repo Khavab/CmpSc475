@@ -33,7 +33,7 @@ struct ActionButtonsView: View {
 }
 
 struct StyledButton: ButtonStyle {
-    var backgroundColor: Color
+    let backgroundColor: Color
 
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label

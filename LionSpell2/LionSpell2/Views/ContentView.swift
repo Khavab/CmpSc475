@@ -5,7 +5,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            Color(red: 230/256, green: 164/256, blue: 180/256).ignoresSafeArea()
+            Color.primaryBackgroundColor.ignoresSafeArea()
             
             VStack(spacing: 15) {
                 TopHeaderView()

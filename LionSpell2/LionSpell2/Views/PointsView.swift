@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PointsView: View {
-    var score: Int
+    let score: Int
     var body: some View {
         HStack {
             Text(String(score))
