@@ -16,6 +16,13 @@
 		F2A1FA5F2B5F94E500149262 /* LionSpell2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA5E2B5F94E500149262 /* LionSpell2UITestsLaunchTests.swift */; };
 		F2A1FA6C2B5FAD8800149262 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA6B2B5FAD8800149262 /* GameManager.swift */; };
 		F2A1FA6E2B5FB75100149262 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA6D2B5FB75100149262 /* Words.swift */; };
+		F2A1FA722B6008DF00149262 /* PointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA712B6008DF00149262 /* PointsView.swift */; };
+		F2A1FA742B60093800149262 /* DiscoveredWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA732B60093800149262 /* DiscoveredWordsView.swift */; };
+		F2A1FA762B60095900149262 /* CurrentWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA752B60095900149262 /* CurrentWordView.swift */; };
+		F2A1FA782B600A0200149262 /* AlphabetButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA772B600A0200149262 /* AlphabetButtonView.swift */; };
+		F2A1FA7A2B600A2100149262 /* GameOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA792B600A2100149262 /* GameOptionsView.swift */; };
+		F2A1FA7C2B600AD100149262 /* ActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA7B2B600AD100149262 /* ActionButtonsView.swift */; };
+		F2A1FA7E2B600B3100149262 /* TopHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1FA7D2B600B3100149262 /* TopHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +55,13 @@
 		F2A1FA5E2B5F94E500149262 /* LionSpell2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LionSpell2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F2A1FA6B2B5FAD8800149262 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		F2A1FA6D2B5FB75100149262 /* Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
+		F2A1FA712B6008DF00149262 /* PointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsView.swift; sourceTree = "<group>"; };
+		F2A1FA732B60093800149262 /* DiscoveredWordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveredWordsView.swift; sourceTree = "<group>"; };
+		F2A1FA752B60095900149262 /* CurrentWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWordView.swift; sourceTree = "<group>"; };
+		F2A1FA772B600A0200149262 /* AlphabetButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetButtonView.swift; sourceTree = "<group>"; };
+		F2A1FA792B600A2100149262 /* GameOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOptionsView.swift; sourceTree = "<group>"; };
+		F2A1FA7B2B600AD100149262 /* ActionButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonsView.swift; sourceTree = "<group>"; };
+		F2A1FA7D2B600B3100149262 /* TopHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				F2A1FA402B5F94E300149262 /* LionSpell2 */,
-				F2A1FA512B5F94E500149262 /* LionSpell2Tests */,
 				F2A1FA5B2B5F94E500149262 /* LionSpell2UITests */,
 				F2A1FA3F2B5F94E300149262 /* Products */,
 			);
@@ -98,11 +111,12 @@
 		F2A1FA402B5F94E300149262 /* LionSpell2 */ = {
 			isa = PBXGroup;
 			children = (
-				F2A1FA412B5F94E300149262 /* LionSpell2App.swift */,
-				F2A1FA432B5F94E300149262 /* ContentView.swift */,
 				F2A1FA452B5F94E500149262 /* Assets.xcassets */,
-				F2A1FA472B5F94E500149262 /* Preview Content */,
 				F2A1FA6B2B5FAD8800149262 /* GameManager.swift */,
+				F2A1FA412B5F94E300149262 /* LionSpell2App.swift */,
+				F2A1FA512B5F94E500149262 /* LionSpell2Tests */,
+				F2A1FA472B5F94E500149262 /* Preview Content */,
+				F2A1FA7F2B600B7D00149262 /* Views */,
 				F2A1FA6D2B5FB75100149262 /* Words.swift */,
 			);
 			path = LionSpell2;
@@ -131,6 +145,21 @@
 				F2A1FA5E2B5F94E500149262 /* LionSpell2UITestsLaunchTests.swift */,
 			);
 			path = LionSpell2UITests;
+			sourceTree = "<group>";
+		};
+		F2A1FA7F2B600B7D00149262 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F2A1FA7B2B600AD100149262 /* ActionButtonsView.swift */,
+				F2A1FA772B600A0200149262 /* AlphabetButtonView.swift */,
+				F2A1FA432B5F94E300149262 /* ContentView.swift */,
+				F2A1FA752B60095900149262 /* CurrentWordView.swift */,
+				F2A1FA732B60093800149262 /* DiscoveredWordsView.swift */,
+				F2A1FA792B600A2100149262 /* GameOptionsView.swift */,
+				F2A1FA712B6008DF00149262 /* PointsView.swift */,
+				F2A1FA7D2B600B3100149262 /* TopHeaderView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,10 +292,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2A1FA7C2B600AD100149262 /* ActionButtonsView.swift in Sources */,
 				F2A1FA442B5F94E300149262 /* ContentView.swift in Sources */,
+				F2A1FA762B60095900149262 /* CurrentWordView.swift in Sources */,
+				F2A1FA742B60093800149262 /* DiscoveredWordsView.swift in Sources */,
+				F2A1FA782B600A0200149262 /* AlphabetButtonView.swift in Sources */,
 				F2A1FA6E2B5FB75100149262 /* Words.swift in Sources */,
 				F2A1FA6C2B5FAD8800149262 /* GameManager.swift in Sources */,
 				F2A1FA422B5F94E300149262 /* LionSpell2App.swift in Sources */,
+				F2A1FA7E2B600B3100149262 /* TopHeaderView.swift in Sources */,
+				F2A1FA722B6008DF00149262 /* PointsView.swift in Sources */,
+				F2A1FA7A2B600A2100149262 /* GameOptionsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

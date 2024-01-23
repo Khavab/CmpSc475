@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 class GameViewModel: ObservableObject {
     @Published var score: Int = 0
