@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ContentView: View {
+struct GameView: View {
     @EnvironmentObject var gameManager: GameViewModel
     
     var body: some View {
@@ -41,6 +41,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    GameView()
         .environmentObject(GameViewModel(size: 5))
 }

@@ -13,7 +13,7 @@ struct LionSpell2App: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ControlView()
                 .environmentObject(gameManager)
         }
     }

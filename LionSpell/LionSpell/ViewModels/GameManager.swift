@@ -22,10 +22,10 @@ class GameViewModel: ObservableObject {
     
     @Published var letters: [SpellLetter] = []
     @Published var isValid: Bool = false
-    @Published var scramble: Scramble = Scramble(size: 5, words: Words.words)
-            
+    @Published var scramble: Scramble = Scramble(size: 5, words: Words.words)    
+    
     init(size: Int) {
-        newGame()
+        newGame(size: size)
     }
 
     func submitWord() {
@@ -51,8 +51,8 @@ class GameViewModel: ObservableObject {
         
     }
     
-    func newGame() {
-        scramble = Scramble(size: 5, words: Words.words)
+    func newGame(size: Int) {
+        scramble = Scramble(size: size, words: Words.words)
         letters = scramble.letters
         shuffleLetters()
         score = 0
