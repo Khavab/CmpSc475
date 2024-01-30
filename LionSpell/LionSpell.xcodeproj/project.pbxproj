@@ -31,6 +31,8 @@
 		F2FFD21D2B6828E8008C4818 /* WordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD21C2B6828E8008C4818 /* WordView.swift */; };
 		F2FFD2232B6969DD008C4818 /* EasyButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD2222B6969DD008C4818 /* EasyButtonView.swift */; };
 		F2FFD2272B69783C008C4818 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD2262B69783C008C4818 /* Preferences.swift */; };
+		F2FFD22B2B69832A008C4818 /* MediumButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD22A2B69832A008C4818 /* MediumButtonView.swift */; };
+		F2FFD22D2B698E7B008C4818 /* HardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD22C2B698E7B008C4818 /* HardButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		F2FFD21C2B6828E8008C4818 /* WordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordView.swift; sourceTree = "<group>"; };
 		F2FFD2222B6969DD008C4818 /* EasyButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyButtonView.swift; sourceTree = "<group>"; };
 		F2FFD2262B69783C008C4818 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		F2FFD22A2B69832A008C4818 /* MediumButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumButtonView.swift; sourceTree = "<group>"; };
+		F2FFD22C2B698E7B008C4818 /* HardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,8 @@
 				F2FFD2172B65B1E9008C4818 /* FormViews */,
 				F2FFD20C2B61B29D008C4818 /* GameViews */,
 				F2FFD21B2B682895008C4818 /* HintViews */,
+				F2FFD22A2B69832A008C4818 /* MediumButtonView.swift */,
+				F2FFD22C2B698E7B008C4818 /* HardButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -373,8 +379,10 @@
 				F2FFD21D2B6828E8008C4818 /* WordView.swift in Sources */,
 				F2FFD2272B69783C008C4818 /* Preferences.swift in Sources */,
 				F2FFD2122B62DC05008C4818 /* FormView.swift in Sources */,
+				F2FFD22B2B69832A008C4818 /* MediumButtonView.swift in Sources */,
 				F2FFD2102B62DB12008C4818 /* ControlView.swift in Sources */,
 				F2FFD1FE2B619680008C4818 /* TopHeaderView.swift in Sources */,
+				F2FFD22D2B698E7B008C4818 /* HardButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

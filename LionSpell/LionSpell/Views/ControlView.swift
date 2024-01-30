@@ -28,7 +28,15 @@ struct ControlView: View {
                     
                     CurrentWordView(currentWord: gameManager.currentWord)
                     
-                    EasyButtonView(addLetter: gameManager.addLetter, spellLetters: gameManager.letters, letter: gameManager.letter)
+                    if gameManager.preferences.difficulty == Difficulty.easy {
+                        EasyButtonView(addLetter: gameManager.addLetter, spellLetters: gameManager.letters, letter: gameManager.letter)
+                    }
+                    else if gameManager.preferences.difficulty == Difficulty.medium {
+                        MediumButtonView(addLetter: gameManager.addLetter, spellLetters: gameManager.letters, letter: gameManager.letter)
+                    }
+                    else {
+                        HardButtonView(addLetter: gameManager.addLetter, spellLetters: gameManager.letters, letter: gameManager.letter)
+                    }
                     
                     ActionButtonsView(submitAction: gameManager.submitWord,
                                       deleteAction: gameManager.deleteWord,
