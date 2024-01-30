@@ -33,7 +33,7 @@ struct ControlView: View {
                     CurrentWordView(currentWord: gameManager.currentWord)
                         .padding(.top, 10)
                     
-                    AlphabetButtonsView(addLetter: gameManager.addLetter, spellLetters: gameManager.letters)
+                    AlphabetButtonsView(addLetter: gameManager.addLetter, spellLetters: gameManager.letters, letter: gameManager.letter)
                         .padding(.top, 10)
                     
                     ActionButtonsView(submitAction: gameManager.submitWord,

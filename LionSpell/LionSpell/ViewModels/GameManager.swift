@@ -25,6 +25,7 @@ class GameViewModel: ObservableObject {
             newGame()
         }
     }
+    @Published var letter: SpellLetter =  SpellLetter(letter: "A")
     @Published var letters: [SpellLetter] = []
     @Published var words: [String] = []
     @Published var panagrams: [String] = []
@@ -56,6 +57,7 @@ class GameViewModel: ObservableObject {
     
     func newGame() {
         scramble = Scramble(preferences: preferences)
+        letter = scramble.letter
         letters = scramble.letters
         words = scramble.words
         panagrams = scramble.panagrams
@@ -83,5 +85,9 @@ class GameViewModel: ObservableObject {
 
 struct SpellLetter: Identifiable {
     let letter: String
-    let id = UUID()
+    var id: String { letter }
+    
+    static func == (lhs: SpellLetter, rhs: SpellLetter) -> Bool {
+            return lhs.letter == rhs.letter
+        }
 }
