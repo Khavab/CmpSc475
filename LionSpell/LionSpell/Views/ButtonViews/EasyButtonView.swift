@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EasyButtonView: View {
     let addLetter: (String) -> Void
-    let spellLetters: [SpellLetter]
+    let spellLetters: [Character]
     var body: some View {
         EasyButton(addLetter: addLetter, cent: true, spellLetter: spellLetters[0])
         EasyButton(addLetter: addLetter, cent: false, spellLetter: spellLetters[1])
@@ -26,15 +26,15 @@ struct EasyButtonView: View {
 struct EasyButton: View {
     let addLetter: (String) -> Void
     let cent: Bool
-    let spellLetter: SpellLetter
+    let spellLetter: Character
     
     var body: some View {
-        Button(action: { addLetter(spellLetter.letter) } ){
+        Button(action: { addLetter(String(spellLetter)) } ){
             ZStack {
                 RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
                     .frame(width: 75, height: 75)
                     .foregroundColor(cent ? Color.primaryButtonColor : Color.primaryLightColor)
-                Text(spellLetter.letter)
+                Text(String(spellLetter))
                     .font(.title)
                     .foregroundColor(cent ? Color.primaryLightColor : .white)
                     .rotationEffect(.degrees(-45))

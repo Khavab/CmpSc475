@@ -9,7 +9,7 @@ import Foundation
 
 class GameViewModel: ObservableObject {
     @Published var scramble: Scramble
-    @Published var letters: [SpellLetter]
+    @Published var letters: [Character]
     @Published var score: Int
     @Published var words: [String]
     @Published var panagrams: [String]

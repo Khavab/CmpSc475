@@ -8,46 +8,27 @@
 import Foundation
 
 struct Scramble {
-    let letters: [SpellLetter]
+    let letters: [Character]
     let words: [String]
     let panagrams: [String]
-    
-    let spellLetters = [
-        SpellLetter(letter: "A"), SpellLetter(letter: "B"), SpellLetter(letter: "C"),
-        SpellLetter(letter: "D"), SpellLetter(letter: "E"), SpellLetter(letter: "F"),
-        SpellLetter(letter: "G"), SpellLetter(letter: "H"), SpellLetter(letter: "I"),
-        SpellLetter(letter: "J"), SpellLetter(letter: "K"), SpellLetter(letter: "L"),
-        SpellLetter(letter: "M"), SpellLetter(letter: "N"), SpellLetter(letter: "O"),
-        SpellLetter(letter: "P"), SpellLetter(letter: "Q"), SpellLetter(letter: "R"),
-        SpellLetter(letter: "S"), SpellLetter(letter: "T"), SpellLetter(letter: "U"),
-        SpellLetter(letter: "V"), SpellLetter(letter: "W"), SpellLetter(letter: "X"),
-        SpellLetter(letter: "Y"), SpellLetter(letter: "Z")]
     
     init(preferences: Preferences) {
         let size = preferences.difficulty.associatedInt
         let words = preferences.language.associatedLanguage
 
-        var temp: [SpellLetter] = []
         let uniqueWords = words.filter { $0.count == size && Set($0).count == size }
         let selectedWord = uniqueWords.randomElement() ?? "error"
-        let selectedLetters = Array(selectedWord.uppercased())
-
-        for char in selectedLetters {
-            if let spellLetter = spellLetters.first(where: { $0.letter == String(char) }) {
-                temp.append(spellLetter)
-            }
-        }
-
-        self.letters = temp
-
-        let allowedCharacterSet = CharacterSet(charactersIn: Set(self.letters.map { $0.letter }).joined().lowercased())
+        let allowedCharacterSet = Set(selectedWord.uppercased())
+        self.letters = Array(allowedCharacterSet)
+        
         self.words = words.filter { word in
-            let wordCharacterSet = CharacterSet(charactersIn: word)
+            let wordCharacterSet = Set(word.uppercased())
             return allowedCharacterSet.isSuperset(of: wordCharacterSet)
         }
+        print(self.words)
 
         self.panagrams = words.filter { word in
-            let wordLettersSet = CharacterSet(charactersIn: word)
+            let wordLettersSet = Set(word.uppercased())
             return wordLettersSet == allowedCharacterSet
         }
     }
@@ -60,16 +41,12 @@ struct Scramble {
     
     func wordScore(currentWord: String) -> Int {
         var score = 0
-        if currentWord.count == 4 {
-            score += 1
-        }
-        else {
-            score += currentWord.count
-        }
+        score += currentWord.count == 4 ? 1 : currentWord.count
+
         
         let currentWordLetters = Set(currentWord.lowercased())
         let allLettersUsed = self.letters.allSatisfy { letter in
-            currentWordLetters.contains(letter.letter.lowercased())
+            currentWordLetters.contains(letter.lowercased())
         }
 
         if allLettersUsed {

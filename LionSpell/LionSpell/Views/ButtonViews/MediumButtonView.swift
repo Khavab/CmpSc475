@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MediumButtonView: View {
     let addLetter: (String) -> Void
-    let spellLetters: [SpellLetter]
+    let spellLetters: [Character]
     
     var body: some View {
         MediumButton(addLetter: addLetter, cent: true, spellLetter: spellLetters[0])
@@ -29,15 +29,15 @@ struct MediumButtonView: View {
 struct MediumButton: View {
     let addLetter: (String) -> Void
     let cent: Bool
-    let spellLetter: SpellLetter
+    let spellLetter: Character
     
     var body: some View {
-        Button(action: { addLetter(spellLetter.letter) } ){
+        Button(action: { addLetter(String(spellLetter)) } ){
             ZStack {
                 Pentagon()
                     .frame(width: 90, height: 90)
                     .foregroundColor(cent ? Color.primaryButtonColor : Color.primaryLightColor)
-                Text(spellLetter.letter)
+                Text(String(spellLetter))
                     .font(.title)
                     .foregroundColor(cent ? Color.primaryLightColor : .white)
                     .rotationEffect(.degrees(cent ? 0 : 180))

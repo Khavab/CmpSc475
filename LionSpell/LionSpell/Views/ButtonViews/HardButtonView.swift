@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HardButtonView: View {
     let addLetter: (String) -> Void
-    let spellLetters: [SpellLetter]
+    let spellLetters: [Character]
     
     var body: some View {
         HardButton(addLetter:  addLetter, cent: true, spellLetter: spellLetters[0])
@@ -32,15 +32,15 @@ struct HardButtonView: View {
 struct HardButton: View {
     let addLetter: (String) -> Void
     let cent: Bool
-    let spellLetter: SpellLetter
+    let spellLetter: Character
     
     var body: some View {
-        Button(action: { addLetter(spellLetter.letter) } ){
+        Button(action: { addLetter(String(spellLetter)) } ){
             ZStack {
                 Hexagon()
                     .frame(width: 90, height: 90)
                     .foregroundColor(cent ? Color.primaryButtonColor : Color.primaryLightColor)
-                Text(spellLetter.letter)
+                Text(String(spellLetter))
                     .font(.title)
                     .foregroundColor(cent ? Color.primaryLightColor : .white)
             }

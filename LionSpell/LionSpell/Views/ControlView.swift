@@ -29,7 +29,7 @@ struct ControlView: View {
                                       deleteAction: gameManager.deleteWord,
                                       isValid: gameManager.isValid,
                                       currentWord: gameManager.currentWord)
-                        .frame(width: 340)
+                    .frame(width: 340)
                 }
                 .padding()
             }
