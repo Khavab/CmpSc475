@@ -12,8 +12,7 @@ struct CurrentWordView: View {
     var body: some View {
         Text(currentWord)
             .font(.title)
-            .frame(maxWidth: .infinity)
-            .frame(height:70)
+            .frame(width: 400, height: 70)
             .background(Color.currentWordBG)
             .cornerRadius(10)
             .padding(.horizontal, 10)

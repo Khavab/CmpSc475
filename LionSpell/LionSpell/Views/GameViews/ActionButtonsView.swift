@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ActionButtonsView: View {
+    @EnvironmentObject var gameManager: GameViewModel
     let submitAction: () -> Void
     let deleteAction: () -> Void
     let isValid: Bool
@@ -21,6 +22,10 @@ struct ActionButtonsView: View {
             .buttonStyle(StyledButton(backgroundColor: .red))
             .disabled(currentWord.count == 0)
 
+            Spacer()
+            
+            PointsView(score: gameManager.score)
+            
             Spacer()
 
             Button(action: submitAction) {

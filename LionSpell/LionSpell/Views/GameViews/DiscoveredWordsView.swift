@@ -11,22 +11,20 @@ struct DiscoveredWordsView: View {
     let foundWords: [String]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
             ScrollView(.horizontal, showsIndicators: true) {
                 HStack(spacing: 5) {
                     ForEach(foundWords, id: \.self) { word in
                         Text(word)
-                            .padding(5)
-                            .background(Color.white)
+                            .padding(.trailing, 5)
                             .cornerRadius(5)
+                            .font(.title)
                     }
                 }
                 .padding(.horizontal)
             }
-            .frame(height: 100)
-        }
-        .background(Color.discoveredWordBG)
-        .cornerRadius(10)
-        .frame(width: 350)
+            .frame(height: 70)
+            .background(Color.discoveredWordBG)
+            .cornerRadius(10)
+            .frame(width: 400)
     }
 }

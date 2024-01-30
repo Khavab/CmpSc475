@@ -29,8 +29,8 @@
 		F2FFD2162B6426EC008C4818 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD2152B6426EC008C4818 /* PickerView.swift */; };
 		F2FFD2192B65B4D8008C4818 /* HintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD2182B65B4D8008C4818 /* HintView.swift */; };
 		F2FFD21D2B6828E8008C4818 /* WordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD21C2B6828E8008C4818 /* WordView.swift */; };
-		F2FFD21F2B6895E2008C4818 /* SettingsValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD21E2B6895E2008C4818 /* SettingsValues.swift */; };
-		F2FFD2212B692EBD008C4818 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD2202B692EBD008C4818 /* Preferences.swift */; };
+		F2FFD2232B6969DD008C4818 /* EasyButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD2222B6969DD008C4818 /* EasyButtonView.swift */; };
+		F2FFD2272B69783C008C4818 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD2262B69783C008C4818 /* Preferences.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,8 +76,8 @@
 		F2FFD2152B6426EC008C4818 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		F2FFD2182B65B4D8008C4818 /* HintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintView.swift; sourceTree = "<group>"; };
 		F2FFD21C2B6828E8008C4818 /* WordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordView.swift; sourceTree = "<group>"; };
-		F2FFD21E2B6895E2008C4818 /* SettingsValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsValues.swift; sourceTree = "<group>"; };
-		F2FFD2202B692EBD008C4818 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		F2FFD2222B6969DD008C4818 /* EasyButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyButtonView.swift; sourceTree = "<group>"; };
+		F2FFD2262B69783C008C4818 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				F2FFD20F2B62DB12008C4818 /* ControlView.swift */,
+				F2FFD2222B6969DD008C4818 /* EasyButtonView.swift */,
 				F2FFD2172B65B1E9008C4818 /* FormViews */,
 				F2FFD20C2B61B29D008C4818 /* GameViews */,
 				F2FFD21B2B682895008C4818 /* HintViews */,
@@ -179,7 +180,6 @@
 			children = (
 				F2FFD1FA2B619680008C4818 /* GameManager.swift */,
 				F2FFD1F92B619680008C4818 /* Scramble.swift */,
-				F2FFD2202B692EBD008C4818 /* Preferences.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -189,7 +189,7 @@
 			children = (
 				F2FFD1FD2B619680008C4818 /* Colors.swift */,
 				F2FFD1FC2B619680008C4818 /* Words.swift */,
-				F2FFD21E2B6895E2008C4818 /* SettingsValues.swift */,
+				F2FFD2262B69783C008C4818 /* Preferences.swift */,
 			);
 			path = ViewConstants;
 			sourceTree = "<group>";
@@ -359,19 +359,19 @@
 				F2FFD2072B619680008C4818 /* GameManager.swift in Sources */,
 				F2FFD1FF2B619680008C4818 /* GameOptionsView.swift in Sources */,
 				F2FFD2092B619680008C4818 /* Colors.swift in Sources */,
-				F2FFD21F2B6895E2008C4818 /* SettingsValues.swift in Sources */,
 				F2FFD2032B619680008C4818 /* CurrentWordView.swift in Sources */,
 				F2FFD2012B619680008C4818 /* ActionButtonsView.swift in Sources */,
 				F2FFD2022B619680008C4818 /* AlphabetButtonView.swift in Sources */,
 				F2FFD2062B619680008C4818 /* Scramble.swift in Sources */,
 				F2FFD2162B6426EC008C4818 /* PickerView.swift in Sources */,
 				F2FFD2002B619680008C4818 /* PointsView.swift in Sources */,
-				F2FFD2212B692EBD008C4818 /* Preferences.swift in Sources */,
 				F2FFD2192B65B4D8008C4818 /* HintView.swift in Sources */,
+				F2FFD2232B6969DD008C4818 /* EasyButtonView.swift in Sources */,
 				F2FFD1C62B619640008C4818 /* LionSpellApp.swift in Sources */,
 				F2FFD2082B619680008C4818 /* Words.swift in Sources */,
 				F2FFD2052B619680008C4818 /* DiscoveredWordsView.swift in Sources */,
 				F2FFD21D2B6828E8008C4818 /* WordView.swift in Sources */,
+				F2FFD2272B69783C008C4818 /* Preferences.swift in Sources */,
 				F2FFD2122B62DC05008C4818 /* FormView.swift in Sources */,
 				F2FFD2102B62DB12008C4818 /* ControlView.swift in Sources */,
 				F2FFD1FE2B619680008C4818 /* TopHeaderView.swift in Sources */,

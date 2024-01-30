@@ -36,7 +36,7 @@ struct GameOptionsView: View {
                     .frame(width: (geometry.size.width - 20) / 3)
             }
         }
-        .frame(height: 70)
+        .frame(width: 380, height: 80)
     }
 }
 

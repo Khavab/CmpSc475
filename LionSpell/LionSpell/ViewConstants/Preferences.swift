@@ -7,6 +7,13 @@
 
 import Foundation
 
+struct Preferences {
+    var difficulty: Difficulty = Difficulty.easy
+    var language: Language = Language.english
+    
+    init() {}
+}
+
 enum Difficulty: String, CaseIterable, Identifiable {
     case easy, medium, hard
     
