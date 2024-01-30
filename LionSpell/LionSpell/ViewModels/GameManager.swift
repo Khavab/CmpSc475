@@ -20,14 +20,19 @@ class GameViewModel: ObservableObject {
         }
     }
     
+    @Published var preferences: Preferences = Preferences() {
+        didSet {
+            newGame()
+        }
+    }
     @Published var letters: [SpellLetter] = []
     @Published var words: [String] = []
     @Published var panagrams: [String] = []
     @Published var isValid: Bool = false
-    @Published var scramble: Scramble = Scramble(size: 5, words: Words.words)
+    @Published var scramble: Scramble = Scramble(preferences: Preferences())
     
-    init(size: Int) {
-        newGame(size: size)
+    init() {
+        newGame()
     }
 
     func submitWord() {
@@ -49,8 +54,8 @@ class GameViewModel: ObservableObject {
         isValid = scramble.isValid(currentWord: currentWord, foundWords: foundWords)
     }
     
-    func newGame(size: Int) {
-        scramble = Scramble(size: size, words: Words.words)
+    func newGame() {
+        scramble = Scramble(preferences: preferences)
         letters = scramble.letters
         words = scramble.words
         panagrams = scramble.panagrams

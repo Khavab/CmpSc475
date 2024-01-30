@@ -23,12 +23,13 @@ struct Scramble {
         SpellLetter(letter: "V"), SpellLetter(letter: "W"), SpellLetter(letter: "X"),
         SpellLetter(letter: "Y"), SpellLetter(letter: "Z")]
     
-    init(size: Int, words: [String]) {
+    init(preferences: Preferences) {
+        let size = preferences.difficulty.associatedInt
+        let words = preferences.language.associatedLanguage
+
         var temp: [SpellLetter] = []
-        let uniqueFiveLetterWords = words.filter {
-            $0.count == 5 && Set($0).count == 5
-        }
-        let selectedWord = uniqueFiveLetterWords.randomElement() ?? "error"
+        let uniqueWords = words.filter { $0.count == size && Set($0).count == size }
+        let selectedWord = uniqueWords.randomElement() ?? "error"
         let selectedLetters = Array(selectedWord.uppercased())
 
         for char in selectedLetters {
@@ -50,6 +51,7 @@ struct Scramble {
             return wordLettersSet == allowedCharacterSet
         }
     }
+
 
     
     func isValid(currentWord: String, foundWords: [String]) -> Bool {

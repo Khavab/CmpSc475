@@ -15,11 +15,11 @@ struct HintView: View {
             Form {
                 Section(header: Text("Summary")) {
                     NavigationLink(destination: WordView(title: "Words", words: gameManager.words)) {
-                        Text("Total number of words")
+                        Text("Total number of words: " + String(gameManager.words.count))
                     }
                     Text("Total possible points: " + gameManager.totalPoints())
                     NavigationLink(destination: WordView(title: "Panagrams", words: gameManager.panagrams)) {
-                        Text("Number of Panagrams")
+                        Text("Number of Panagrams: " + String(gameManager.panagrams.count))
                     }
                 }
             }
@@ -29,5 +29,5 @@ struct HintView: View {
 
 #Preview {
     HintView()
-        .environmentObject(GameViewModel(size: 5))
+        .environmentObject(GameViewModel())
 }

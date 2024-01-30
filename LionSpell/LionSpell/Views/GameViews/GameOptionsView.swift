@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct GameOptionsView: View {
-    let newGame: (Int) -> Void
+    let newGame: () -> Void
     let shuffle: () -> Void
-    let size: Int
     
     var body: some View {
         GeometryReader { geometry in
             HStack(spacing: 10) {
-                NavigationLink(destination: HintView()) { 
+                NavigationLink(destination: HintView()) {
                     HStack {
                         Image(systemName: "questionmark.circle")
                             .foregroundColor(Color.primaryLightColor)
@@ -31,7 +30,7 @@ struct GameOptionsView: View {
                 }
                 .frame(width: (geometry.size.width - 20) / 3)
 
-                ControlButton(label: "New Game", systemImage: "plus.circle", action: { newGame(size) })
+                ControlButton(label: "New Game", systemImage: "plus.circle", action: { newGame() })
                                     .frame(width: (geometry.size.width - 20) / 3)
                 ControlButton(label: "Shuffle", systemImage: "shuffle.circle", action: shuffle)
                     .frame(width: (geometry.size.width - 20) / 3)

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TopHeaderView: View {
+    @Binding var preferences: Preferences
+    
     var body: some View {
         HStack {
             Spacer()
@@ -15,7 +17,7 @@ struct TopHeaderView: View {
                 .font(.title)
                 .fontWeight(.medium)
             Spacer()
-            NavigationLink(destination: FormView()) {
+            NavigationLink(destination: FormView(preferences: $preferences)) {
                 Image(systemName: "gearshape.fill")
             }
         }
