@@ -13,7 +13,7 @@ struct HintView: View {
     var body: some View {
         Form {
             SummarySection
-
+            
             ForEach(groupWordsByLength().sorted(by: { $0.key < $1.key }), id: \.key) { length, wordGroups in
                 Section(header: Text("\(length) Letter Words")) {
                     ForEach(wordGroups.sorted(by: { $0.key < $1.key }), id: \.key) { letter, words in
@@ -37,7 +37,7 @@ struct HintView: View {
             }
         }
     }
-
+    
     private func groupWordsByLength() -> [Int: [String: [String]]] {
         var groupedWords = [Int: [String: [String]]]()
         

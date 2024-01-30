@@ -43,7 +43,7 @@ class GameViewModel: ObservableObject {
         currentWord = ""
         isValid = false
     }
-
+    
     func submitWord() {
         score += scramble.wordScore(currentWord: currentWord)
         foundWords.append(currentWord.lowercased())
@@ -84,7 +84,7 @@ class GameViewModel: ObservableObject {
         
         return String(t)
     }
-
+    
     func shuffleLetters() {
         var shuffledPart = Array(letters[1...])
         shuffledPart.shuffle()

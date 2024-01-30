@@ -12,13 +12,13 @@ struct ButtonView: View {
     var body: some View {
         ZStack {
             if gameManager.preferences.difficulty == Difficulty.easy {
-                EasyButtonView(addLetter: gameManager.addLetter, spellLetters: gameManager.letters)
+                EasyButtonView(addLetter: gameManager.addLetter, letters: gameManager.letters)
             }
             else if gameManager.preferences.difficulty == Difficulty.medium {
-                MediumButtonView(addLetter: gameManager.addLetter, spellLetters: gameManager.letters)
+                MediumButtonView(addLetter: gameManager.addLetter, letters: gameManager.letters)
             }
             else {
-                HardButtonView(addLetter: gameManager.addLetter, spellLetters: gameManager.letters)
+                HardButtonView(addLetter: gameManager.addLetter, letters: gameManager.letters)
             }
         }
         .frame(width: 400, height: 250)

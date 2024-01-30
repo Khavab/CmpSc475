@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct LionSpell2App: App {
-
+    
     var body: some Scene {
         WindowGroup {
             ControlView()

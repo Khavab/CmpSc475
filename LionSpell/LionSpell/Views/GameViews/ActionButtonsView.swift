@@ -13,7 +13,7 @@ struct ActionButtonsView: View {
     let deleteAction: () -> Void
     let isValid: Bool
     let currentWord: String
-
+    
     var body: some View {
         HStack {
             Button(action: deleteAction) {
@@ -21,13 +21,13 @@ struct ActionButtonsView: View {
             }
             .buttonStyle(StyledButton(backgroundColor: .red))
             .disabled(currentWord.count == 0)
-
+            
             Spacer()
             
             PointsView(score: gameManager.score)
             
             Spacer()
-
+            
             Button(action: submitAction) {
                 Label("Submit", systemImage: "checkmark.circle.fill")
             }
@@ -40,7 +40,7 @@ struct ActionButtonsView: View {
 struct StyledButton: ButtonStyle {
     let backgroundColor: Color
     @Environment(\.isEnabled) var isEnabled: Bool
-
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .padding()

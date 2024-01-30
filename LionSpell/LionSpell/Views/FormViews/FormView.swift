@@ -11,18 +11,18 @@ struct FormView: View {
     @Binding var preferences: Preferences
     
     private var selectedDifficultyBinding: Binding<Difficulty> {
-            Binding<Difficulty>(
-                get: { self.preferences.difficulty },
-                set: { self.preferences.difficulty = $0 }
-            )
-        }
-        
-        private var selectedLanguageBinding: Binding<Language> {
-            Binding<Language>(
-                get: { self.preferences.language },
-                set: { self.preferences.language = $0 }
-            )
-        }
+        Binding<Difficulty>(
+            get: { self.preferences.difficulty },
+            set: { self.preferences.difficulty = $0 }
+        )
+    }
+    
+    private var selectedLanguageBinding: Binding<Language> {
+        Binding<Language>(
+            get: { self.preferences.language },
+            set: { self.preferences.language = $0 }
+        )
+    }
     
     var body: some View {
         VStack {

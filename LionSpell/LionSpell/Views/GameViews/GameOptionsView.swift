@@ -29,7 +29,7 @@ struct GameOptionsView: View {
                     .cornerRadius(15)
                 }
                 .frame(width: (geometry.size.width - 20) / 3)
-
+                
                 ControlButton(label: "New Game", systemImage: "plus.circle", action: { newGame() })
                     .frame(width: (geometry.size.width - 20) / 3)
                 ControlButton(label: "Shuffle", systemImage: "shuffle.circle", action: shuffle)
@@ -44,7 +44,7 @@ struct ControlButton: View {
     let label: String
     let systemImage: String
     let action: () -> Void
-
+    
     var body: some View {
         Button(action: action) {
             HStack {
