@@ -16,8 +16,6 @@
 		F2FFD1FE2B619680008C4818 /* TopHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD1F02B619680008C4818 /* TopHeaderView.swift */; };
 		F2FFD1FF2B619680008C4818 /* GameOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD1F12B619680008C4818 /* GameOptionsView.swift */; };
 		F2FFD2002B619680008C4818 /* PointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD1F22B619680008C4818 /* PointsView.swift */; };
-		F2FFD2012B619680008C4818 /* ActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD1F32B619680008C4818 /* ActionButtonsView.swift */; };
-		F2FFD2022B619680008C4818 /* AlphabetButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD1F42B619680008C4818 /* AlphabetButtonView.swift */; };
 		F2FFD2032B619680008C4818 /* CurrentWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD1F52B619680008C4818 /* CurrentWordView.swift */; };
 		F2FFD2052B619680008C4818 /* DiscoveredWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD1F72B619680008C4818 /* DiscoveredWordsView.swift */; };
 		F2FFD2062B619680008C4818 /* Scramble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD1F92B619680008C4818 /* Scramble.swift */; };
@@ -33,6 +31,9 @@
 		F2FFD2272B69783C008C4818 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD2262B69783C008C4818 /* Preferences.swift */; };
 		F2FFD22B2B69832A008C4818 /* MediumButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD22A2B69832A008C4818 /* MediumButtonView.swift */; };
 		F2FFD22D2B698E7B008C4818 /* HardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD22C2B698E7B008C4818 /* HardButtonView.swift */; };
+		F2FFD22F2B699582008C4818 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD22E2B699582008C4818 /* ButtonView.swift */; };
+		F2FFD2322B699E7F008C4818 /* SpellLetters.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD2312B699E7F008C4818 /* SpellLetters.swift */; };
+		F2FFD2352B69A220008C4818 /* ActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD2342B69A220008C4818 /* ActionButtonsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,8 +66,6 @@
 		F2FFD1F02B619680008C4818 /* TopHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopHeaderView.swift; sourceTree = "<group>"; };
 		F2FFD1F12B619680008C4818 /* GameOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOptionsView.swift; sourceTree = "<group>"; };
 		F2FFD1F22B619680008C4818 /* PointsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsView.swift; sourceTree = "<group>"; };
-		F2FFD1F32B619680008C4818 /* ActionButtonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButtonsView.swift; sourceTree = "<group>"; };
-		F2FFD1F42B619680008C4818 /* AlphabetButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphabetButtonView.swift; sourceTree = "<group>"; };
 		F2FFD1F52B619680008C4818 /* CurrentWordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWordView.swift; sourceTree = "<group>"; };
 		F2FFD1F72B619680008C4818 /* DiscoveredWordsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveredWordsView.swift; sourceTree = "<group>"; };
 		F2FFD1F92B619680008C4818 /* Scramble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scramble.swift; sourceTree = "<group>"; };
@@ -82,6 +81,9 @@
 		F2FFD2262B69783C008C4818 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		F2FFD22A2B69832A008C4818 /* MediumButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumButtonView.swift; sourceTree = "<group>"; };
 		F2FFD22C2B698E7B008C4818 /* HardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardButtonView.swift; sourceTree = "<group>"; };
+		F2FFD22E2B699582008C4818 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		F2FFD2312B699E7F008C4818 /* SpellLetters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellLetters.swift; sourceTree = "<group>"; };
+		F2FFD2342B69A220008C4818 /* ActionButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,13 +172,11 @@
 		F2FFD1EF2B619680008C4818 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F2FFD2302B69978B008C4818 /* ButtonViews */,
 				F2FFD20F2B62DB12008C4818 /* ControlView.swift */,
-				F2FFD2222B6969DD008C4818 /* EasyButtonView.swift */,
 				F2FFD2172B65B1E9008C4818 /* FormViews */,
 				F2FFD20C2B61B29D008C4818 /* GameViews */,
 				F2FFD21B2B682895008C4818 /* HintViews */,
-				F2FFD22A2B69832A008C4818 /* MediumButtonView.swift */,
-				F2FFD22C2B698E7B008C4818 /* HardButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +196,7 @@
 				F2FFD1FD2B619680008C4818 /* Colors.swift */,
 				F2FFD1FC2B619680008C4818 /* Words.swift */,
 				F2FFD2262B69783C008C4818 /* Preferences.swift */,
+				F2FFD2312B699E7F008C4818 /* SpellLetters.swift */,
 			);
 			path = ViewConstants;
 			sourceTree = "<group>";
@@ -203,8 +204,7 @@
 		F2FFD20C2B61B29D008C4818 /* GameViews */ = {
 			isa = PBXGroup;
 			children = (
-				F2FFD1F32B619680008C4818 /* ActionButtonsView.swift */,
-				F2FFD1F42B619680008C4818 /* AlphabetButtonView.swift */,
+				F2FFD2342B69A220008C4818 /* ActionButtonsView.swift */,
 				F2FFD1F52B619680008C4818 /* CurrentWordView.swift */,
 				F2FFD1F72B619680008C4818 /* DiscoveredWordsView.swift */,
 				F2FFD1F12B619680008C4818 /* GameOptionsView.swift */,
@@ -230,6 +230,17 @@
 				F2FFD21C2B6828E8008C4818 /* WordView.swift */,
 			);
 			path = HintViews;
+			sourceTree = "<group>";
+		};
+		F2FFD2302B69978B008C4818 /* ButtonViews */ = {
+			isa = PBXGroup;
+			children = (
+				F2FFD22E2B699582008C4818 /* ButtonView.swift */,
+				F2FFD2222B6969DD008C4818 /* EasyButtonView.swift */,
+				F2FFD22A2B69832A008C4818 /* MediumButtonView.swift */,
+				F2FFD22C2B698E7B008C4818 /* HardButtonView.swift */,
+			);
+			path = ButtonViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,12 +377,12 @@
 				F2FFD1FF2B619680008C4818 /* GameOptionsView.swift in Sources */,
 				F2FFD2092B619680008C4818 /* Colors.swift in Sources */,
 				F2FFD2032B619680008C4818 /* CurrentWordView.swift in Sources */,
-				F2FFD2012B619680008C4818 /* ActionButtonsView.swift in Sources */,
-				F2FFD2022B619680008C4818 /* AlphabetButtonView.swift in Sources */,
+				F2FFD22F2B699582008C4818 /* ButtonView.swift in Sources */,
 				F2FFD2062B619680008C4818 /* Scramble.swift in Sources */,
 				F2FFD2162B6426EC008C4818 /* PickerView.swift in Sources */,
 				F2FFD2002B619680008C4818 /* PointsView.swift in Sources */,
 				F2FFD2192B65B4D8008C4818 /* HintView.swift in Sources */,
+				F2FFD2322B699E7F008C4818 /* SpellLetters.swift in Sources */,
 				F2FFD2232B6969DD008C4818 /* EasyButtonView.swift in Sources */,
 				F2FFD1C62B619640008C4818 /* LionSpellApp.swift in Sources */,
 				F2FFD2082B619680008C4818 /* Words.swift in Sources */,
@@ -380,6 +391,7 @@
 				F2FFD2272B69783C008C4818 /* Preferences.swift in Sources */,
 				F2FFD2122B62DC05008C4818 /* FormView.swift in Sources */,
 				F2FFD22B2B69832A008C4818 /* MediumButtonView.swift in Sources */,
+				F2FFD2352B69A220008C4818 /* ActionButtonsView.swift in Sources */,
 				F2FFD2102B62DB12008C4818 /* ControlView.swift in Sources */,
 				F2FFD1FE2B619680008C4818 /* TopHeaderView.swift in Sources */,
 				F2FFD22D2B698E7B008C4818 /* HardButtonView.swift in Sources */,

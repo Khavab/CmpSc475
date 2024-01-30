@@ -10,14 +10,11 @@ import SwiftUI
 struct PointsView: View {
     let score: Int
     var body: some View {
-        //HStack {
             Text(String(score))
                 .font(.title)
                 .fontWeight(.bold)
             Text("points")
-                .font(.subheadline)
+                .font(.headline)
                 .foregroundColor(.gray)
-        //}
-        //.frame(maxWidth: .infinity, alignment: .leading)
     }
 }

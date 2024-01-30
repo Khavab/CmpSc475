@@ -10,37 +10,22 @@ import SwiftUI
 struct HardButtonView: View {
     let addLetter: (String) -> Void
     let spellLetters: [SpellLetter]
-    let letter: SpellLetter
     
     var body: some View {
-        let centeredLetters = centeredSpellLetters()
-        ZStack {
-            HardButton(addLetter:  addLetter, cent: false, spellLetter: centeredLetters[0])
+        HardButton(addLetter:  addLetter, cent: true, spellLetter: spellLetters[0])
+            HardButton(addLetter:  addLetter, cent: false, spellLetter: spellLetters[1])
                 .offset(x: 0, y: -85)
-            HardButton(addLetter:  addLetter, cent: false, spellLetter: centeredLetters[1])
+            HardButton(addLetter:  addLetter, cent: false, spellLetter: spellLetters[2])
                 .offset(x: -75, y: -45)
-            HardButton(addLetter:  addLetter, cent: false, spellLetter: centeredLetters[3])
+            HardButton(addLetter:  addLetter, cent: false, spellLetter: spellLetters[3])
                 .offset(x: -75, y: 45)
-            HardButton(addLetter:  addLetter, cent: true, spellLetter: centeredLetters[2])
-            HardButton(addLetter:  addLetter, cent: false, spellLetter: centeredLetters[4])
+            HardButton(addLetter:  addLetter, cent: false, spellLetter: spellLetters[4])
                 .offset(x: 75, y: -45)
-            HardButton(addLetter:  addLetter, cent: false, spellLetter: centeredLetters[5])
+            HardButton(addLetter:  addLetter, cent: false, spellLetter: spellLetters[5])
                 .offset(x: 75, y: 45)
-            HardButton(addLetter:  addLetter, cent: false, spellLetter: centeredLetters[6])
+            HardButton(addLetter:  addLetter, cent: false, spellLetter: spellLetters[6])
                 .offset(x: 0, y: 85)
-        }
-        .frame(width: 400, height: 250)
-    }
-    
-    private func centeredSpellLetters() -> [SpellLetter] {
-        var letters = spellLetters
-        if let centerIndex = letters.firstIndex(where: { $0.letter == letter.letter }) {
-            letters.remove(at: centerIndex)
-        }
-
-        let halfIndex = letters.count / 2
-        letters.insert(letter, at: halfIndex)
-        return letters
+        
     }
 }
 

@@ -16,27 +16,14 @@ struct ControlView: View {
                 Color.primaryBackgroundColor.ignoresSafeArea()
                 VStack(spacing: 25) {
                     TopHeaderView(preferences: $gameManager.preferences)
-                        .frame(width: 340)
-                        .padding()
                     
-                    GameOptionsView(
-                        newGame: gameManager.newGame,
-                        shuffle: gameManager.shuffleLetters
-                    )
+                    GameOptionsView(newGame: gameManager.newGame, shuffle: gameManager.shuffleLetters)
                     
                     DiscoveredWordsView(foundWords: gameManager.foundWords)
                     
                     CurrentWordView(currentWord: gameManager.currentWord)
                     
-                    if gameManager.preferences.difficulty == Difficulty.easy {
-                        EasyButtonView(addLetter: gameManager.addLetter, spellLetters: gameManager.letters, letter: gameManager.letter)
-                    }
-                    else if gameManager.preferences.difficulty == Difficulty.medium {
-                        MediumButtonView(addLetter: gameManager.addLetter, spellLetters: gameManager.letters, letter: gameManager.letter)
-                    }
-                    else {
-                        HardButtonView(addLetter: gameManager.addLetter, spellLetters: gameManager.letters, letter: gameManager.letter)
-                    }
+                    ButtonView()
                     
                     ActionButtonsView(submitAction: gameManager.submitWord,
                                       deleteAction: gameManager.deleteWord,
@@ -53,4 +40,5 @@ struct ControlView: View {
 
 #Preview {
     ControlView()
+        .environmentObject(GameViewModel())
 }

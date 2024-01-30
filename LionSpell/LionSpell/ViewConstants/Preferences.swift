@@ -8,10 +8,13 @@
 import Foundation
 
 struct Preferences {
-    var difficulty: Difficulty = Difficulty.easy
-    var language: Language = Language.english
+    var difficulty: Difficulty
+    var language: Language
     
-    init() {}
+    init() {
+        difficulty = Difficulty.easy
+        language = Language.english
+    }
 }
 
 enum Difficulty: String, CaseIterable, Identifiable {

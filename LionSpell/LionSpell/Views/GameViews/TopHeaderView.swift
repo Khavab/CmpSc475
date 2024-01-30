@@ -15,11 +15,13 @@ struct TopHeaderView: View {
             Spacer()
             Text("Lion Spell")
                 .font(.title)
-                .fontWeight(.medium)
+                .fontWeight(.bold)
             Spacer()
             NavigationLink(destination: FormView(preferences: $preferences)) {
                 Image(systemName: "gearshape.fill")
             }
         }
+        .frame(width: 340)
+        .padding()
     }
 }

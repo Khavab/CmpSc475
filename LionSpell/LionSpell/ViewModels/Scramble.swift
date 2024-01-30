@@ -9,7 +9,6 @@ import Foundation
 
 struct Scramble {
     let letters: [SpellLetter]
-    let letter: SpellLetter
     let words: [String]
     let panagrams: [String]
     
@@ -28,44 +27,30 @@ struct Scramble {
         let size = preferences.difficulty.associatedInt
         let words = preferences.language.associatedLanguage
 
-        let randomLetterIndex = Int.random(in: 0..<spellLetters.count)
-        let randomLetter = spellLetters[randomLetterIndex].letter
-
-        let filteredWords = words.filter { word in
-            word.contains(randomLetter.lowercased()) && Set(word).count == size
-        }
-
-        guard let selectedWord = filteredWords.randomElement()?.uppercased() else {
-            self.letters = []
-            self.words = []
-            self.panagrams = []
-            self.letter = SpellLetter(letter: "A")
-            return
-        }
-
         var temp: [SpellLetter] = []
-            let selectedLetters = Set(selectedWord)
-            for char in selectedLetters {
-                if let spellLetter = spellLetters.first(where: { $0.letter == String(char) }) {
-                    temp.append(spellLetter)
-                }
+        let uniqueWords = words.filter { $0.count == size && Set($0).count == size }
+        let selectedWord = uniqueWords.randomElement() ?? "error"
+        let selectedLetters = Array(selectedWord.uppercased())
+
+        for char in selectedLetters {
+            if let spellLetter = spellLetters.first(where: { $0.letter == String(char) }) {
+                temp.append(spellLetter)
             }
+        }
+
         self.letters = temp
-        self.letter = SpellLetter(letter: randomLetter)
 
         let allowedCharacterSet = CharacterSet(charactersIn: Set(self.letters.map { $0.letter }).joined().lowercased())
-
         self.words = words.filter { word in
             let wordCharacterSet = CharacterSet(charactersIn: word)
             return allowedCharacterSet.isSuperset(of: wordCharacterSet)
         }
 
-        self.panagrams = self.words.filter { word in
+        self.panagrams = words.filter { word in
             let wordLettersSet = CharacterSet(charactersIn: word)
-            return wordLettersSet == allowedCharacterSet && Set(word).count == size
+            return wordLettersSet == allowedCharacterSet
         }
     }
-
 
 
     

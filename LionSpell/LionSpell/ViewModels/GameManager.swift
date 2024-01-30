@@ -8,32 +8,40 @@
 import Foundation
 
 class GameViewModel: ObservableObject {
-    @Published var score: Int = 0
-    @Published var foundWords: [String] = [] {
+    @Published var scramble: Scramble
+    @Published var letters: [SpellLetter]
+    @Published var score: Int
+    @Published var words: [String]
+    @Published var panagrams: [String]
+    @Published var isValid: Bool
+    @Published var foundWords: [String] {
         didSet {
             updateIsValid()
         }
     }
-    @Published var currentWord: String = "" {
+    @Published var currentWord: String {
         didSet {
             updateIsValid()
         }
     }
-    
-    @Published var preferences: Preferences = Preferences() {
+    @Published var preferences: Preferences {
         didSet {
             newGame()
         }
     }
-    @Published var letter: SpellLetter =  SpellLetter(letter: "A")
-    @Published var letters: [SpellLetter] = []
-    @Published var words: [String] = []
-    @Published var panagrams: [String] = []
-    @Published var isValid: Bool = false
-    @Published var scramble: Scramble = Scramble(preferences: Preferences())
     
     init() {
-        newGame()
+        let tempP = Preferences()
+        let tempS = Scramble(preferences: tempP)
+        scramble = tempS
+        preferences = tempP
+        letters = tempS.letters
+        words = tempS.words
+        panagrams = tempS.panagrams
+        score = 0
+        foundWords = []
+        currentWord = ""
+        isValid = false
     }
 
     func submitWord() {
@@ -57,7 +65,6 @@ class GameViewModel: ObservableObject {
     
     func newGame() {
         scramble = Scramble(preferences: preferences)
-        letter = scramble.letter
         letters = scramble.letters
         words = scramble.words
         panagrams = scramble.panagrams
@@ -79,15 +86,8 @@ class GameViewModel: ObservableObject {
     }
 
     func shuffleLetters() {
-        letters.shuffle()
+        var shuffledPart = Array(letters[1...])
+        shuffledPart.shuffle()
+        letters = [letters[0]] + shuffledPart
     }
-}
-
-struct SpellLetter: Identifiable {
-    let letter: String
-    var id: String { letter }
-    
-    static func == (lhs: SpellLetter, rhs: SpellLetter) -> Bool {
-            return lhs.letter == rhs.letter
-        }
 }
