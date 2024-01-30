@@ -10,6 +10,7 @@ import Foundation
 struct Scramble {
     let letters: [SpellLetter]
     let words: [String]
+    let panagrams: [String]
     
     let spellLetters = [
         SpellLetter(letter: "A"), SpellLetter(letter: "B"), SpellLetter(letter: "C"),
@@ -22,7 +23,7 @@ struct Scramble {
         SpellLetter(letter: "V"), SpellLetter(letter: "W"), SpellLetter(letter: "X"),
         SpellLetter(letter: "Y"), SpellLetter(letter: "Z")]
     
-    init(size: Int, words: [String]){
+    init(size: Int, words: [String]) {
         var temp: [SpellLetter] = []
         let uniqueFiveLetterWords = words.filter {
             $0.count == 5 && Set($0).count == 5
@@ -30,21 +31,26 @@ struct Scramble {
         let selectedWord = uniqueFiveLetterWords.randomElement() ?? "error"
         let selectedLetters = Array(selectedWord.uppercased())
 
-
         for char in selectedLetters {
             if let spellLetter = spellLetters.first(where: { $0.letter == String(char) }) {
                 temp.append(spellLetter)
             }
         }
-        
+
         self.letters = temp
-        
+
         let allowedCharacterSet = CharacterSet(charactersIn: Set(self.letters.map { $0.letter }).joined().lowercased())
         self.words = words.filter { word in
             let wordCharacterSet = CharacterSet(charactersIn: word)
             return allowedCharacterSet.isSuperset(of: wordCharacterSet)
         }
-}
+
+        self.panagrams = words.filter { word in
+            let wordLettersSet = CharacterSet(charactersIn: word)
+            return wordLettersSet == allowedCharacterSet
+        }
+    }
+
     
     func isValid(currentWord: String, foundWords: [String]) -> Bool {
         return Words.words.contains(currentWord.lowercased()) && !foundWords.contains(currentWord.lowercased())

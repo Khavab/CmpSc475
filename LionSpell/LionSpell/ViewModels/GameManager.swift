@@ -21,8 +21,10 @@ class GameViewModel: ObservableObject {
     }
     
     @Published var letters: [SpellLetter] = []
+    @Published var words: [String] = []
+    @Published var panagrams: [String] = []
     @Published var isValid: Bool = false
-    @Published var scramble: Scramble = Scramble(size: 5, words: Words.words)    
+    @Published var scramble: Scramble = Scramble(size: 5, words: Words.words)
     
     init(size: Int) {
         newGame(size: size)
@@ -47,19 +49,26 @@ class GameViewModel: ObservableObject {
         isValid = scramble.isValid(currentWord: currentWord, foundWords: foundWords)
     }
     
-    func showHint() {
-        
-    }
-    
     func newGame(size: Int) {
         scramble = Scramble(size: size, words: Words.words)
         letters = scramble.letters
+        words = scramble.words
+        panagrams = scramble.panagrams
         shuffleLetters()
         score = 0
         foundWords = []
         currentWord = ""
         isValid = false
+    }
+    
+    func totalPoints() -> String {
+        var t = 0
         
+        for word in words {
+            t += word.count
+        }
+        
+        return String(t)
     }
 
     func shuffleLetters() {

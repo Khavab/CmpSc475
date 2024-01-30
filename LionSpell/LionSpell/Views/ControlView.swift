@@ -13,8 +13,6 @@ struct ControlView: View {
         ZStack{
             GameView()
                 .environmentObject(gameManager)
-            
-            FormView()
         }
     }
 }

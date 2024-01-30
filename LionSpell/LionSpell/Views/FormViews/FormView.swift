@@ -8,16 +8,6 @@
 import SwiftUI
 
 struct FormView: View {
-    enum Difficulty: String, CaseIterable, Identifiable {
-        case easy, medium, hard
-        var id: Self { self }
-    }
-    
-    enum Language: String, CaseIterable, Identifiable {
-        case english, french
-        var id: Self { self }
-    }
-    
     @State private var selectedDifficulty: Difficulty = .easy
     @State private var selectedLanguage: Language = .english
     

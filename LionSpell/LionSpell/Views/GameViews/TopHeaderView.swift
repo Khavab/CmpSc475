@@ -15,7 +15,9 @@ struct TopHeaderView: View {
                 .font(.title)
                 .fontWeight(.medium)
             Spacer()
-            Image(systemName: "gearshape.fill")
+            NavigationLink(destination: FormView()) {
+                Image(systemName: "gearshape.fill")
+            }
         }
     }
 }
