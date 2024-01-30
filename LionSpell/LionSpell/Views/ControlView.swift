@@ -14,7 +14,6 @@ struct ControlView: View {
         NavigationStack {
             ZStack {
                 Color.primaryBackgroundColor.ignoresSafeArea()
-                
                 VStack(spacing: 15) {
                     TopHeaderView(preferences: $gameManager.preferences)
                     

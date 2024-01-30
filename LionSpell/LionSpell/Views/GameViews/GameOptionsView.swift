@@ -31,7 +31,7 @@ struct GameOptionsView: View {
                 .frame(width: (geometry.size.width - 20) / 3)
 
                 ControlButton(label: "New Game", systemImage: "plus.circle", action: { newGame() })
-                                    .frame(width: (geometry.size.width - 20) / 3)
+                    .frame(width: (geometry.size.width - 20) / 3)
                 ControlButton(label: "Shuffle", systemImage: "shuffle.circle", action: shuffle)
                     .frame(width: (geometry.size.width - 20) / 3)
             }
