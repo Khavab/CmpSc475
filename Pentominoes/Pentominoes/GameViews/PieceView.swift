@@ -13,7 +13,7 @@ struct PieceView: View {
     var body: some View {
         PentominoView(outline: piece.outline, color: Color.blue)
             .frame(width: calculateWidth(), height: calculateHeight())
-            //.position(x: calculateXPosition(), y: calculateYPosition())
+        //.position(x: calculateXPosition(), y: calculateYPosition())
     }
     
     private func calculateWidth() -> CGFloat {
@@ -38,17 +38,38 @@ struct PieceView: View {
 }
 
 
+struct PentominoOutlineShape: Shape {
+    let outline: PentominoOutline
+    let unitWidth: CGFloat
+    let unitHeight: CGFloat
+    
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        for (index, point) in outline.outline.enumerated() {
+            let x = CGFloat(point.x) * unitWidth
+            let y = CGFloat(point.y) * unitHeight
+            
+            if index == 0 {
+                path.move(to: CGPoint(x: x, y: y))
+            } else {
+                path.addLine(to: CGPoint(x: x, y: y))
+            }
+        }
+        return path
+    }
+}
+
 struct PentominoView: View {
     let outline: PentominoOutline
     let color: Color
-
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 let unitWidth = CGFloat(20)
                 let unitHeight = CGFloat(20)
                 
-                Path { path in
+                let outlinePath = Path { path in
                     for (index, point) in outline.outline.enumerated() {
                         let x = CGFloat(point.x) * unitWidth
                         let y = CGFloat(point.y) * unitHeight
@@ -60,12 +81,21 @@ struct PentominoView: View {
                         }
                     }
                 }
-                .stroke(Color.black, lineWidth: 1) // Grid line color and width
-                .fill(color)
+                
+                VStack(spacing: 0) {
+                    ForEach(0..<outline.size.height, id: \.self) { row in
+                        HStack(spacing: 0) {
+                            ForEach(0..<outline.size.width, id: \.self) { column in
+                                Rectangle()
+                                    .fill(color)
+                                    .frame(width: unitWidth, height: unitHeight)
+                                    .border(Color.black, width: 1)
+                            }
+                        }
+                    }
+                }
+                .mask(outlinePath.fill(Color.white))
             }
         }
     }
 }
-
-
-
