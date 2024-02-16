@@ -21,7 +21,6 @@ struct ContentView: View {
                         Text("Reset")
                             .foregroundColor(.red)
                     }
-                    .disabled(gameManager.board == nil)
                 }
                 
                 GameView()
@@ -34,6 +33,7 @@ struct ContentView: View {
                         Text("Solve")
                             .foregroundColor(.red)
                     }
+                    .disabled(gameManager.board == nil)
                      
                 }
             }

@@ -10,6 +10,7 @@ import SwiftUI
 struct PieceView: View {
     var piece: Piece
     @State private var originalPosition: CGSize = .zero
+    @State private var currentPosition: CGSize
     @State var newPosition: CGSize = .zero
     @State private var isDragging = false
     @State private var rotation: Angle = .zero
@@ -25,6 +26,7 @@ struct PieceView: View {
         self.piece = piece
         self.pieceWidth = CGFloat(piece.outline.size.width) * 15
         self.pieceHeight = CGFloat(piece.outline.size.height) * 15
+        self.currentPosition = CGSize(width: CGFloat(piece.position.x), height: CGFloat(piece.position.y))
     }
     
     var body: some View {
@@ -45,19 +47,17 @@ struct PieceView: View {
                         withAnimation {
                             self.isDragging = false
                             // Check if the new position is within the bounds
-                            if !isPieceWithinBounds() {
-                                self.newPosition = self.originalPosition  // Snap back if not within bounds
-                            } else {
-                                // Calculate the new width and height by rounding to the nearest multiple of 15
-                                let newWidth = round((self.originalPosition.width + self.newPosition.width) / 15) * 15
-                                let newHeight = round((self.originalPosition.height + self.newPosition.height) / 15) * 15
-                                
-                                // Update the originalPosition with the new rounded values
-                                self.originalPosition = CGSize(width: newWidth, height: newHeight)
-                                
-                                // Reset newPosition to zero after updating originalPosition
-                                self.newPosition = .zero
+                            if isPieceWithinBounds() {
+                                // Update currentPosition to include the translation from the drag
+                                self.currentPosition.width += self.newPosition.width
+                                self.currentPosition.height += self.newPosition.height
                             }
+                            else {
+                                self.currentPosition = CGSize(width: CGFloat(piece.position.x), height: CGFloat(piece.position.y))
+                            }
+                            
+                            // Reset newPosition (the offset) to zero regardless of whether the piece is in bounds or not
+                            self.newPosition = .zero
                         }
                     }
             )
@@ -80,12 +80,12 @@ struct PieceView: View {
             .rotationEffect(rotation)
             .scaleEffect(isDragging ? 1.2 : 1.0)
             .scaleEffect(x: isFlipped ? -1 : 1, y: 1)
-            .position(x: CGFloat(piece.position.x) + originalPosition.width, y: CGFloat(piece.position.y) + originalPosition.height)
+            .position(x: currentPosition.width, y: currentPosition.height)
     }
     
     private func isPieceWithinBounds() -> Bool {
-        let inXBounds = Int(newPosition.width) + piece.position.x > 20 && Int(newPosition.width) + piece.position.x < 230
-        let inYBounds = Int(newPosition.height) + piece.position.y > 295 && Int(newPosition.height) + piece.position.y < 505
+        let inXBounds = Int(newPosition.width) + Int(currentPosition.width) > 20 && Int(newPosition.width) + Int(currentPosition.width) < 230
+        let inYBounds = Int(newPosition.height) + Int(currentPosition.height) > 295 && Int(newPosition.height) + Int(currentPosition.height) < 505
         
         return inXBounds && inYBounds
     }
