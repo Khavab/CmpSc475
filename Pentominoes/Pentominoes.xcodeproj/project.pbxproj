@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F255B70E2B7F0E91001CBD69 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B70D2B7F0E91001CBD69 /* GameView.swift */; };
 		F2FFD24B2B6C11F6008C4818 /* PentominoesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD24A2B6C11F6008C4818 /* PentominoesApp.swift */; };
 		F2FFD24D2B6C11F6008C4818 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FFD24C2B6C11F6008C4818 /* ContentView.swift */; };
 		F2FFD24F2B6C11FB008C4818 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2FFD24E2B6C11FB008C4818 /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F255B70D2B7F0E91001CBD69 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		F2FFD2472B6C11F6008C4818 /* Pentominoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pentominoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2FFD24A2B6C11F6008C4818 /* PentominoesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PentominoesApp.swift; sourceTree = "<group>"; };
 		F2FFD24C2B6C11F6008C4818 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				F2FFD2942B6D6127008C4818 /* PuzzleButtonView.swift */,
 				F2FFD28E2B6C14C6008C4818 /* BoardView.swift */,
 				F2FFD2902B6C156F008C4818 /* PieceView.swift */,
+				F255B70D2B7F0E91001CBD69 /* GameView.swift */,
 			);
 			path = GameViews;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				F2FFD28F2B6C14C6008C4818 /* BoardView.swift in Sources */,
 				F2FFD24D2B6C11F6008C4818 /* ContentView.swift in Sources */,
 				F2FFD2952B6D6127008C4818 /* PuzzleButtonView.swift in Sources */,
+				F255B70E2B7F0E91001CBD69 /* GameView.swift in Sources */,
 				F2FFD24B2B6C11F6008C4818 /* PentominoesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

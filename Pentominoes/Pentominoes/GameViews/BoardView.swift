@@ -18,7 +18,7 @@ struct BoardView: View {
                         ForEach(0..<14, id: \.self) { column in
                             Rectangle()
                                 .fill(Color.white)
-                                .frame(width: 20, height: 20)
+                                .frame(width: 15, height: 15)
                                 .border(Color.black, width: 1)
                         }
                     }
@@ -26,10 +26,10 @@ struct BoardView: View {
             }
             if let puzzleOutline = puzzleOutline {
                 PuzzleShapeView(puzzleOutline: puzzleOutline)
-                    .offset(CGSize(width: (280 - 20 * puzzleOutline.size.width) / 2, height: (280 - 20 * puzzleOutline.size.height) / 2))
+                    .offset(CGSize(width: (210 - 15 * puzzleOutline.size.width) / 2, height: (210 - 15 * puzzleOutline.size.height) / 2))
             }
         }
-        .frame(width: 280, height: 280)
+        .frame(width: 210, height: 210)
     }
 }
 
@@ -43,8 +43,8 @@ struct PuzzleShapeView: View {
                 ForEach(puzzleOutline.outlines, id: \.self) { outline in
                     Path { path in
                         for point in outline {
-                            let x = CGFloat(point.x) * (20)
-                            let y = CGFloat(point.y) * (20)
+                            let x = CGFloat(point.x) * (15)
+                            let y = CGFloat(point.y) * (15)
                             let point = CGPoint(x: x, y: y)
                             if path.isEmpty {
                                 path.move(to: point)

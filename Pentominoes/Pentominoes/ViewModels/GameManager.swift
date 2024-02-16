@@ -27,8 +27,8 @@ class GameManager : ObservableObject {
             let row = index / 4
             let column = index % 4
             
-            let xPosition = column * 75 + 75
-            let yPosition = row * 100 + 400
+            let xPosition = column * 75 + 25
+            let yPosition = row * 75 + 550
             
             let position = Position(x: xPosition, y: yPosition)
             let piece = Piece(position: position, outline: outline)
@@ -51,6 +51,19 @@ class GameManager : ObservableObject {
         }
         else {
             board = puzzles[pos]
+        }
+    }
+    
+    func reset() {
+        for (index, element) in pieces.enumerated() {
+            let row = index / 4
+            let column = index % 4
+            
+            let xPosition = column * 75 + 25
+            let yPosition = row * 75 + 550
+            
+            let position = Position(x: xPosition, y: yPosition)
+            pieces[index].position = position
         }
     }
 }
