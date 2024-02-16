@@ -21,6 +21,7 @@ struct ContentView: View {
                         Text("Reset")
                             .foregroundColor(.red)
                     }
+                    .disabled(gameManager.board == nil)
                 }
                 
                 GameView()

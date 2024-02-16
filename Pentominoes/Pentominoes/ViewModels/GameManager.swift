@@ -55,7 +55,7 @@ class GameManager : ObservableObject {
     }
     
     func reset() {
-        for (index, element) in pieces.enumerated() {
+        for (index, _) in pieces.enumerated() {
             let row = index / 4
             let column = index % 4
             
