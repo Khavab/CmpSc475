@@ -10,11 +10,7 @@ import MapKit
 
 struct MapView: View {
     @EnvironmentObject var mapModel: MapModel
-    
-    // Create a computed property to filter mapped buildings
-    var mappedBuildings: [Building] {
-        mapModel.buildings.filter { $0.mapped }
-    }
+    @State private var selectedBuilding: Building?
     
     var body: some View {
         ZStack {
@@ -23,39 +19,72 @@ struct MapView: View {
                 span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
             )), annotationItems: mappedBuildings) { building in
                 MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(building.latitude), longitude: CLLocationDegrees(building.longitude))) {
-                    VStack {
+                    Button(action: {
+                        selectedBuilding = building
+                    }) {
                         Image(systemName: "mappin.circle.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
                             .foregroundColor(building.favorite ? .blue : .red)
-                            .contextMenu {
-                                if !building.photo.isEmpty {
-                                    Image(building.photo)
-                                        .scaledToFit()
-                                        .frame(width: 100, height: 400)
-                                }
-                                Text("\(building.name)\(building.year != 0 ? " (\(building.year))" : "")")
-                                Button(building.favorite ? "Unfavorite" : "Favorite") {
-                                    toggleFavorite(for: building)
-                                }
-                            }
-                        Text(building.name)
-                            .font(.caption)
                     }
                 }
             }
         }
-        .frame(width: 400, height: 500)
+        .sheet(item: $selectedBuilding) { building in
+            // This is where you present the details or options for the selected building
+            BuildingDetailsView(building: building)
+                .environmentObject(mapModel)
+        }
     }
     
-    private func toggleFavorite(for building: Building) {
-        if let index = mapModel.buildings.firstIndex(where: { $0.code == building.code }) {
-            mapModel.buildings[index].favorite.toggle()
-        }
+    private var mappedBuildings: [Building] {
+        mapModel.buildings.filter { $0.mapped }
     }
 }
 
+struct BuildingDetailsView: View {
+    @EnvironmentObject var mapModel: MapModel
+    var building: Building
+   
+    
+    var body: some View {
+        if UIDevice.current.orientation.isPortrait {
+            HStack {
+                Text("\(building.name)\(building.year != 0 ? " (\(building.year))" : "")")
+                if !building.photo.isEmpty {
+                    Image(building.photo)
+                }
+                Button(building.favorite ? "Unfavorite" : "Favorite") {
+                    toggleFavorite(for: building)
+                }
+                .buttonStyle(StyledButton(backgroundColor: building.favorite ? .red : .blue))
+            }
+        }
+        else {
+            VStack {
+                Text("\(building.name)\(building.year != 0 ? " (\(building.year))" : "")")
+                if !building.photo.isEmpty {
+                    Image(building.photo)
+                }
+                Button(building.favorite ? "Unfavorite" : "Favorite") {
+                    toggleFavorite(for: building)
+                }
+                .buttonStyle(StyledButton(backgroundColor: building.favorite ? .red : .blue))
+            }
+        }
+    }
+    
+    private func toggleFavorite(for targetBuilding: Building) {
+        guard let index = mapModel.buildings.firstIndex(where: { $0.code == targetBuilding.code }) else { return }
+
+        var updatedBuilding = mapModel.buildings[index]
+        updatedBuilding.favorite.toggle()
+        mapModel.buildings[index] = updatedBuilding
+    }
+
+}
+
 #Preview {
-    MapView()
+    ContentView()
         .environmentObject(MapModel())
 }

@@ -1,5 +1,5 @@
 //
-//  ButtonsView.swift
+//  ButtonsVView.swift
 //  Campus
 //
 //  Created by Shibli Nomani on 2/20/24.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct ButtonsView: View {
+struct ButtonsVView: View {
     @EnvironmentObject var mapModel: MapModel
     
     var body: some View {
         VStack {
-            HStack {
+            VStack {
                 NavigationLink(destination: BuildingsListView()) {
                     Text("Buildings")
                         .padding()
@@ -38,6 +38,6 @@ struct ButtonsView: View {
 }
 
 #Preview {
-    ButtonsView()
+    ButtonsVView()
         .environmentObject(MapModel())
 }

@@ -11,12 +11,14 @@ struct ContentView: View {
     @EnvironmentObject var mapModel: MapModel
     var body: some View {
         NavigationStack {
+            
             VStack {
                 MapView()
                 
-                ButtonsView()
+                ButtonsHView()
             }
             .padding()
+            
         }
         .environmentObject(mapModel)
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Building: Identifiable, Codable {
+struct Building: Identifiable, Codable, Equatable {
     let id: Int
     let latitude: Float
     let longitude: Float
@@ -41,5 +41,9 @@ struct Building: Identifiable, Codable {
         favorite = try container.decodeIfPresent(Bool.self, forKey: .favorite) ?? false
         id = code
     }
+    
+    public static func == (lhs: Building, rhs: Building) -> Bool {
+            return lhs.code == rhs.code
+        }
 }
 

@@ -19,8 +19,9 @@
 		F255B74B2B848D08001CBD69 /* buildings.json in Resources */ = {isa = PBXBuildFile; fileRef = F255B74A2B848D08001CBD69 /* buildings.json */; };
 		F255B74F2B848D58001CBD69 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B74E2B848D58001CBD69 /* MapModel.swift */; };
 		F255B7512B84A488001CBD69 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B7502B84A488001CBD69 /* Model.swift */; };
-		F255B7532B84B437001CBD69 /* ButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B7522B84B437001CBD69 /* ButtonsView.swift */; };
 		F255B7552B84B4EA001CBD69 /* BuildingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B7542B84B4EA001CBD69 /* BuildingsListView.swift */; };
+		F255B75B2B84F0B8001CBD69 /* ButtonsHView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B75A2B84F0B8001CBD69 /* ButtonsHView.swift */; };
+		F255B75D2B84F0E6001CBD69 /* ButtonsVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B75C2B84F0E6001CBD69 /* ButtonsVView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,8 +57,9 @@
 		F255B74A2B848D08001CBD69 /* buildings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = buildings.json; sourceTree = "<group>"; };
 		F255B74E2B848D58001CBD69 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
 		F255B7502B84A488001CBD69 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		F255B7522B84B437001CBD69 /* ButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsView.swift; sourceTree = "<group>"; };
 		F255B7542B84B4EA001CBD69 /* BuildingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingsListView.swift; sourceTree = "<group>"; };
+		F255B75A2B84F0B8001CBD69 /* ButtonsHView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsHView.swift; sourceTree = "<group>"; };
+		F255B75C2B84F0E6001CBD69 /* ButtonsVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsVView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +160,8 @@
 			children = (
 				F255B7452B7FDAAA001CBD69 /* MapView.swift */,
 				F255B7542B84B4EA001CBD69 /* BuildingsListView.swift */,
-				F255B7522B84B437001CBD69 /* ButtonsView.swift */,
+				F255B75A2B84F0B8001CBD69 /* ButtonsHView.swift */,
+				F255B75C2B84F0E6001CBD69 /* ButtonsVView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -307,10 +310,11 @@
 				F255B74F2B848D58001CBD69 /* MapModel.swift in Sources */,
 				F255B7552B84B4EA001CBD69 /* BuildingsListView.swift in Sources */,
 				F255B7462B7FDAAA001CBD69 /* MapView.swift in Sources */,
+				F255B75B2B84F0B8001CBD69 /* ButtonsHView.swift in Sources */,
 				F255B7512B84A488001CBD69 /* Model.swift in Sources */,
-				F255B7532B84B437001CBD69 /* ButtonsView.swift in Sources */,
 				F255B71C2B7FDA52001CBD69 /* CampusApp.swift in Sources */,
 				F255B7482B848B65001CBD69 /* Styles.swift in Sources */,
+				F255B75D2B84F0E6001CBD69 /* ButtonsVView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
