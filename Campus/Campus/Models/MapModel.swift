@@ -17,19 +17,34 @@ class MapModel: ObservableObject {
     }
     
     func loadBuildings() {
-        guard let url = Bundle.main.url(forResource: "buildings", withExtension: "json") else {
-            print("Buildings json file not found")
+        let documentsDirectoryURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        let localURL = documentsDirectoryURL?.appendingPathComponent("buildings.json")
+        
+        if let localURL = localURL, FileManager.default.fileExists(atPath: localURL.path) {
+            do {
+                let data = try Data(contentsOf: localURL)
+                self.buildings = try JSONDecoder().decode([Building].self, from: data)
+                print("Loaded buildings from Documents directory")
+                return
+            } catch {
+                print("Error loading buildings from Documents: \(error)")
+            }
+        }
+        
+        guard let bundleURL = Bundle.main.url(forResource: "buildings", withExtension: "json") else {
+            print("Buildings json file not found in bundle")
             return
         }
         
         do {
-            let data = try Data(contentsOf: url)
-            let decoder = JSONDecoder()
-            self.buildings = try decoder.decode([Building].self, from: data)
+            let data = try Data(contentsOf: bundleURL)
+            self.buildings = try JSONDecoder().decode([Building].self, from: data)
+            print("Loaded buildings from bundle")
         } catch {
-            print("Error decoding buildings: \(error)")
+            print("Error decoding buildings from bundle: \(error)")
         }
     }
+
     
     func updateBuildings(buildings: [Building]) {
         self.buildings = buildings
@@ -55,6 +70,17 @@ class MapModel: ObservableObject {
             return updatedBuilding
         }
     }
+    
+    func saveBuildings() {
+        do {
+            let url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("buildings.json")
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(buildings)
+            try data.write(to: url, options: [.atomicWrite])
+            print("Buildings saved successfully")
+        } catch {
+            print("Failed to save buildings: \(error)")
+        }
+    }
+
 }
-
-

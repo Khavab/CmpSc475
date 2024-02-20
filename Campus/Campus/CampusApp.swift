@@ -9,9 +9,19 @@ import SwiftUI
 
 @main
 struct CampusApp: App {
+    @StateObject var mapModel = MapModel()
+    @Environment(\.scenePhase) var scenePhase
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView() // Replace with your main view
+                .environmentObject(mapModel)
+                .onChange(of: scenePhase) { oldPhase, newPhase in
+                    if newPhase == .background {
+                        mapModel.saveBuildings()
+                    }
+                }
         }
     }
+    
 }

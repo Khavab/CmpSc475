@@ -32,7 +32,7 @@ struct MapView: View {
                                 if !building.photo.isEmpty {
                                     Image(building.photo)
                                         .scaledToFit()
-                                        .frame(width: 100, height: 100)
+                                        .frame(width: 100, height: 400)
                                 }
                                 Text("\(building.name)\(building.year != 0 ? " (\(building.year))" : "")")
                                 Button(building.favorite ? "Unfavorite" : "Favorite") {

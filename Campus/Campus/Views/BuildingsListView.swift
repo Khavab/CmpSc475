@@ -10,12 +10,12 @@ import SwiftUI
 struct BuildingsListView: View {
     @EnvironmentObject var mapModel: MapModel
     @State private var selectedBuildingCodes = Set<Int>()
-
+    
     var body: some View {
         List(sortedBuildings, id: \.code, selection: $selectedBuildingCodes) { building in
             Text(buildingDisplayName(building: building))
         }
-        .onChange(of: selectedBuildingCodes) { newSelection in
+        .onChange(of: selectedBuildingCodes) { _, newSelection in
             updateMappedStatusForAllBuildings()
         }
         .onAppear {
@@ -24,7 +24,7 @@ struct BuildingsListView: View {
         }
         .environment(\.editMode, .constant(.active)) // Keep the list in edit mode for selection
     }
-
+    
     private var sortedBuildings: [Building] {
         mapModel.buildings.sorted { $0.name < $1.name }
     }
@@ -39,7 +39,7 @@ struct BuildingsListView: View {
         // Reassigning the modified array to trigger @Published change notification
         mapModel.updateBuildings(buildings: updatedBuildings)
     }
-
+    
     
     private func buildingDisplayName(building: Building) -> String {
         building.favorite ? "\(building.name) <3" : building.name

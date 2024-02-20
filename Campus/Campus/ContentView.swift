@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var mapModel = MapModel()
+    @EnvironmentObject var mapModel: MapModel
     var body: some View {
         NavigationStack {
             VStack {
