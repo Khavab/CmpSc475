@@ -25,9 +25,6 @@ struct MapView: View {
                 )), annotationItems: mappedBuildings) { building in
                     MapMarker(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(building.latitude), longitude: CLLocationDegrees(building.longitude)), tint: .red)
                 }
-                Button(action: {print(mapModel.buildings)}) {
-                    Text("Test")
-                }
             }
         }
         .frame(width: 400, height: 500)

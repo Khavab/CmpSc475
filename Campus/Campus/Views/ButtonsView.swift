@@ -26,7 +26,7 @@ struct ButtonsView: View {
             }
             .buttonStyle(StyledButton(backgroundColor: .blue))
             
-            Button(action: {}) {
+            Button(action: {mapModel.deselect()}) {
                 Text("Deselect")
             }
             .buttonStyle(StyledButton(backgroundColor: .blue))

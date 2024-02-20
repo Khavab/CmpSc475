@@ -33,6 +33,14 @@ class MapModel: ObservableObject {
     func updateBuildings(buildings: [Building]) {
         self.buildings = buildings
     }
+    
+    func deselect() {
+        self.buildings = self.buildings.map { building in
+            var updatedBuilding = building
+            updatedBuilding.mapped = false
+            return updatedBuilding
+        }
+    }
 }
 
 
