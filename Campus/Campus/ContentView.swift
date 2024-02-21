@@ -9,20 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var mapModel: MapModel
+
     var body: some View {
         NavigationStack {
-            
-            VStack {
-                MapView()
-                
-                ButtonsHView()
-            }
-            .padding()
-            
+            MapView()
+                .ignoresSafeArea()
+                .overlay(
+                    ButtonsHView()
+                        .padding(),
+                    alignment: .bottom
+                )
         }
         .environmentObject(mapModel)
     }
 }
+
 
 #Preview {
     ContentView()
