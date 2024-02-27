@@ -6,13 +6,18 @@
 //
 
 import Foundation
+import CoreLocation
 
 class MapModel: ObservableObject {
     @Published var buildings: [Building]
     @Published var favorites: Bool = false
+    var locationManager = CLLocationManager()
     
     init() {
         self.buildings = []
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        
         loadBuildings()
     }
     

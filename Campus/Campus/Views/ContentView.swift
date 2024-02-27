@@ -15,7 +15,7 @@ struct ContentView: View {
             MapView()
                 .ignoresSafeArea()
                 .overlay(
-                    ButtonsHView()
+                    MapButtonsView()
                         .padding(),
                     alignment: .bottom
                 )

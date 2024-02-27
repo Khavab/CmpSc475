@@ -12,17 +12,18 @@ struct BuildingsListView: View {
     @State private var selectedBuildingCodes = Set<Int>()
     
     var body: some View {
-        List(sortedBuildings, id: \.code, selection: $selectedBuildingCodes) { building in
-            Text(buildingDisplayName(building: building))
+        VStack {
+            List(sortedBuildings, id: \.code, selection: $selectedBuildingCodes) { building in
+                Text(buildingDisplayName(building: building))
+            }
+            .onChange(of: selectedBuildingCodes) { _, newSelection in
+                updateMappedStatusForAllBuildings()
+            }
+            .onAppear {
+                selectedBuildingCodes = Set(mapModel.buildings.filter { $0.mapped }.map { $0.code })
+            }
+            .environment(\.editMode, .constant(.active))
         }
-        .onChange(of: selectedBuildingCodes) { _, newSelection in
-            updateMappedStatusForAllBuildings()
-        }
-        .onAppear {
-            // Initialize selection based on buildings' mapped status
-            selectedBuildingCodes = Set(mapModel.buildings.filter { $0.mapped }.map { $0.code })
-        }
-        .environment(\.editMode, .constant(.active)) // Keep the list in edit mode for selection
     }
     
     private var sortedBuildings: [Building] {
@@ -36,7 +37,6 @@ struct BuildingsListView: View {
             updatedBuildings[index].mapped = isMapped
             
         }
-        // Reassigning the modified array to trigger @Published change notification
         mapModel.updateBuildings(buildings: updatedBuildings)
     }
     

@@ -20,8 +20,8 @@
 		F255B74F2B848D58001CBD69 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B74E2B848D58001CBD69 /* MapModel.swift */; };
 		F255B7512B84A488001CBD69 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B7502B84A488001CBD69 /* Model.swift */; };
 		F255B7552B84B4EA001CBD69 /* BuildingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B7542B84B4EA001CBD69 /* BuildingsListView.swift */; };
-		F255B75B2B84F0B8001CBD69 /* ButtonsHView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B75A2B84F0B8001CBD69 /* ButtonsHView.swift */; };
-		F255B75D2B84F0E6001CBD69 /* ButtonsVView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B75C2B84F0E6001CBD69 /* ButtonsVView.swift */; };
+		F255B75F2B890D07001CBD69 /* BuildingDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B75E2B890D07001CBD69 /* BuildingDetailsView.swift */; };
+		F255B7642B8DCF23001CBD69 /* MapButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B7632B8DCF23001CBD69 /* MapButtonsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +58,8 @@
 		F255B74E2B848D58001CBD69 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
 		F255B7502B84A488001CBD69 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		F255B7542B84B4EA001CBD69 /* BuildingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingsListView.swift; sourceTree = "<group>"; };
-		F255B75A2B84F0B8001CBD69 /* ButtonsHView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsHView.swift; sourceTree = "<group>"; };
-		F255B75C2B84F0E6001CBD69 /* ButtonsVView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsVView.swift; sourceTree = "<group>"; };
+		F255B75E2B890D07001CBD69 /* BuildingDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingDetailsView.swift; sourceTree = "<group>"; };
+		F255B7632B8DCF23001CBD69 /* MapButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButtonsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +112,6 @@
 			children = (
 				F255B71B2B7FDA52001CBD69 /* CampusApp.swift */,
 				F255B74D2B848D31001CBD69 /* json */,
-				F255B71D2B7FDA52001CBD69 /* ContentView.swift */,
 				F255B7562B84D583001CBD69 /* Views */,
 				F255B7572B84D5A5001CBD69 /* Models */,
 				F255B71F2B7FDA54001CBD69 /* Assets.xcassets */,
@@ -158,10 +157,9 @@
 		F255B7562B84D583001CBD69 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F255B7452B7FDAAA001CBD69 /* MapView.swift */,
+				F255B71D2B7FDA52001CBD69 /* ContentView.swift */,
+				F255B7602B890D5A001CBD69 /* MapViews */,
 				F255B7542B84B4EA001CBD69 /* BuildingsListView.swift */,
-				F255B75A2B84F0B8001CBD69 /* ButtonsHView.swift */,
-				F255B75C2B84F0E6001CBD69 /* ButtonsVView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -173,6 +171,16 @@
 				F255B74E2B848D58001CBD69 /* MapModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F255B7602B890D5A001CBD69 /* MapViews */ = {
+			isa = PBXGroup;
+			children = (
+				F255B7452B7FDAAA001CBD69 /* MapView.swift */,
+				F255B75E2B890D07001CBD69 /* BuildingDetailsView.swift */,
+				F255B7632B8DCF23001CBD69 /* MapButtonsView.swift */,
+			);
+			path = MapViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,14 +315,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F255B71E2B7FDA52001CBD69 /* ContentView.swift in Sources */,
+				F255B7642B8DCF23001CBD69 /* MapButtonsView.swift in Sources */,
 				F255B74F2B848D58001CBD69 /* MapModel.swift in Sources */,
 				F255B7552B84B4EA001CBD69 /* BuildingsListView.swift in Sources */,
 				F255B7462B7FDAAA001CBD69 /* MapView.swift in Sources */,
-				F255B75B2B84F0B8001CBD69 /* ButtonsHView.swift in Sources */,
 				F255B7512B84A488001CBD69 /* Model.swift in Sources */,
 				F255B71C2B7FDA52001CBD69 /* CampusApp.swift in Sources */,
 				F255B7482B848B65001CBD69 /* Styles.swift in Sources */,
-				F255B75D2B84F0E6001CBD69 /* ButtonsVView.swift in Sources */,
+				F255B75F2B890D07001CBD69 /* BuildingDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
