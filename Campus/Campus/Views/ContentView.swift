@@ -12,18 +12,29 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .bottom) {
+            ZStack {
                 MapView()
                     .ignoresSafeArea()
-
-                MapButtonsView()
-                    .padding(.bottom)
+                
+                VStack {
+                    if !mapModel.route.isEmpty {
+                        ZStack(alignment: .top) {
+                            RouteStepsView()
+                                .padding(.bottom)
+                                .frame(height: 170)
+                                .zIndex(1)
+                        }
+                    }
+                    Spacer()
+                    
+                    MapButtonsView()
+                        .padding(.bottom)
+                }
             }
         }
         .environmentObject(mapModel)
     }
 }
-
 
 #Preview {
     ContentView()

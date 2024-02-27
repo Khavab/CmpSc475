@@ -19,26 +19,27 @@ struct MapView: View {
                     center: CLLocationCoordinate2D(latitude: 40.8036202287245, longitude: -77.8578992214907),
                     span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
                 )),
+                showsUserLocation: true,
                 annotationItems: annotations) { item in
                     MapAnnotation(coordinate: item.coordinate) {
                         if item.isRoutePoint {
                             Circle()
                                 .fill(Color.blue)
                                 .frame(width: 5, height: 5)
-                        } else if let building = item.building {
+                        } else if let _ = item.building {
                             Button(action: {
-                                selectedBuilding = building
+                                selectedBuilding = item.building
                             }) {
                                 Image(systemName: "mappin.circle.fill")
                                     .resizable()
                                     .frame(width: 30, height: 30)
-                                    .foregroundColor(building.favorite ? .blue : .red)
+                                    .foregroundColor(item.building?.favorite ?? false ? .blue : .red)
                             }
                         } else {
                             Image(systemName: "person.circle.fill")
                                 .resizable()
-                                .frame(width: 30, height: 30)
-                                .foregroundColor(.blue)
+                                .frame(width: 25, height: 25)
+                                .foregroundColor(.green)
                         }
                     }
                 }
@@ -63,8 +64,10 @@ struct MapView: View {
         }
         
         if let userLocation = mapModel.userLocation {
-            points.append(MapAnnotationItem(coordinate: userLocation.coordinate, building: nil, isRoutePoint: false))
+            let userLocationAnnotation = MapAnnotationItem(coordinate: userLocation.coordinate, building: nil, isRoutePoint: false)
+            points.append(userLocationAnnotation)
         }
+        
         
         return points
     }
@@ -80,7 +83,6 @@ struct MapAnnotationItem: Identifiable {
     let building: Building?
     let isRoutePoint: Bool
 }
-
 
 #Preview {
     ContentView()

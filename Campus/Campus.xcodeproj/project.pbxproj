@@ -26,6 +26,7 @@
 		F255B76A2B8DFEA4001CBD69 /* RouteSelecterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B7692B8DFEA4001CBD69 /* RouteSelecterView.swift */; };
 		F255B76C2B8DFF33001CBD69 /* RouteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B76B2B8DFF33001CBD69 /* RouteListView.swift */; };
 		F255B76E2B8E2287001CBD69 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B76D2B8E2287001CBD69 /* LocationModel.swift */; };
+		F255B7702B8E296D001CBD69 /* RouteStepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F255B76F2B8E296D001CBD69 /* RouteStepsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		F255B7692B8DFEA4001CBD69 /* RouteSelecterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSelecterView.swift; sourceTree = "<group>"; };
 		F255B76B2B8DFF33001CBD69 /* RouteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListView.swift; sourceTree = "<group>"; };
 		F255B76D2B8E2287001CBD69 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		F255B76F2B8E296D001CBD69 /* RouteStepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteStepsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 			children = (
 				F255B7692B8DFEA4001CBD69 /* RouteSelecterView.swift */,
 				F255B76B2B8DFF33001CBD69 /* RouteListView.swift */,
+				F255B76F2B8E296D001CBD69 /* RouteStepsView.swift */,
 			);
 			path = RouteViews;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				F255B7462B7FDAAA001CBD69 /* MapView.swift in Sources */,
 				F255B7512B84A488001CBD69 /* Model.swift in Sources */,
 				F255B76A2B8DFEA4001CBD69 /* RouteSelecterView.swift in Sources */,
+				F255B7702B8E296D001CBD69 /* RouteStepsView.swift in Sources */,
 				F255B71C2B7FDA52001CBD69 /* CampusApp.swift in Sources */,
 				F255B7482B848B65001CBD69 /* Styles.swift in Sources */,
 				F255B76E2B8E2287001CBD69 /* LocationModel.swift in Sources */,

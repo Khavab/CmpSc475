@@ -10,8 +10,8 @@ import SwiftUI
 
 struct MapButtonsView: View {
     @EnvironmentObject var mapModel: MapModel
-    @State private var showingRouteSheet = false // State to control the sheet presentation
-
+    @State private var showingRouteSheet = false
+    
     var body: some View {
         VStack {
             HStack {

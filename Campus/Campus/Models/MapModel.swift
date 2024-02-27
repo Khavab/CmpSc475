@@ -15,41 +15,23 @@ class MapModel: ObservableObject {
     @Published var favorites: Bool = false
     @Published var toggle: String = "A"
     @Published var route: [MKRoute] = []
+    
+    var locationModel = LocationModel()
+    
     @Published var userLocation: CLLocation?
-
-    var locationManager = CLLocationManager()
-    private var locationManagerDelegateHandler = LocationModel()
-
+    
     init() {
         self.buildings = []
-        setupLocationManager()
         loadBuildings()
+        setupLocationUpdates()
     }
     
-    private func setupLocationManager() {
-        locationManager.delegate = locationManagerDelegateHandler
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
-        
-        locationManagerDelegateHandler.didUpdateLocations = { [weak self] locations in
-            if let location = locations.last {
-                DispatchQueue.main.async {
-                    self?.userLocation = location
-                }
+    private func setupLocationUpdates() {
+        locationModel.didUpdateLocations = { [weak self] locations in
+            guard let self = self, let location = locations.first else { return }
+            DispatchQueue.main.async {
+                self.userLocation = location
             }
-        }
-        
-        locationManagerDelegateHandler.didChangeAuthorization = { [weak self] status in
-            switch status {
-            case .authorizedWhenInUse, .authorizedAlways:
-                self?.locationManager.startUpdatingLocation()
-            default:
-                break
-            }
-        }
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
         }
     }
     
@@ -150,9 +132,8 @@ class MapModel: ObservableObject {
             }
             
             DispatchQueue.main.async {
-                self.deselect() // Deselect all buildings first
+                self.deselect()
                 
-                // Find the start and end buildings in the buildings array and set their .mapped property to true
                 if let startIndex = self.buildings.firstIndex(where: { $0.id == startBuilding.id }) {
                     self.buildings[startIndex].mapped = true
                 }
@@ -161,9 +142,9 @@ class MapModel: ObservableObject {
                     self.buildings[endIndex].mapped = true
                 }
                 
-                self.route = [route] // Update the route
+                self.route = [route]
             }
         }
     }
-
+    
 }
