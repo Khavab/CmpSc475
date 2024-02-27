@@ -10,28 +10,38 @@ import SwiftUI
 
 struct MapButtonsView: View {
     @EnvironmentObject var mapModel: MapModel
-    
+    @State private var showingRouteSheet = false // State to control the sheet presentation
+
     var body: some View {
-        HStack {
-            NavigationLink(destination: BuildingsListView()) {
-                Text("Buildings")
-                    .padding()
-                    .background(.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+        VStack {
+            HStack {
+                NavigationLink(destination: BuildingsListView()) {
+                    Text("Buildings")
+                        .padding()
+                        .background(.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .environmentObject(mapModel)
+
+                Button(action: { mapModel.favoritesSwap() }) {
+                    Text("Favorites")
+                }
+                .buttonStyle(StyledButton(backgroundColor: mapModel.favorites ? .green : .red))
+
+                Button(action: { mapModel.deselect() }) {
+                    Text("Clear")
+                }
+                .buttonStyle(StyledButton(backgroundColor: .blue))
+
+                Button(action: { showingRouteSheet.toggle() }) {
+                    Text("Route")
+                }
+                .buttonStyle(StyledButton(backgroundColor: .blue))
             }
-            .environmentObject(mapModel)
-            
-            Button(action: {mapModel.favoritesSwap()}) {
-                Text("Favorites")
-            }
-            .buttonStyle(StyledButton(backgroundColor: mapModel.favorites ? .green : .red))
-            
-            
-            Button(action: {mapModel.deselect()}) {
-                Text("Deselect")
-            }
-            .buttonStyle(StyledButton(backgroundColor: .blue))
+        }
+        .sheet(isPresented: $showingRouteSheet) {
+            RouteSelecterView()
         }
     }
 }

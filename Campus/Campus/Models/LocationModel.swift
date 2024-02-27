@@ -6,3 +6,17 @@
 //
 
 import Foundation
+import CoreLocation
+
+class LocationModel: NSObject, CLLocationManagerDelegate {
+    var didUpdateLocations: (([CLLocation]) -> Void)?
+    var didChangeAuthorization: ((CLAuthorizationStatus) -> Void)?
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        didUpdateLocations?(locations)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        didChangeAuthorization?(status)
+    }
+}

@@ -12,13 +12,13 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            MapView()
-                .ignoresSafeArea()
-                .overlay(
-                    MapButtonsView()
-                        .padding(),
-                    alignment: .bottom
-                )
+            ZStack(alignment: .bottom) {
+                MapView()
+                    .ignoresSafeArea()
+
+                MapButtonsView()
+                    .padding(.bottom)
+            }
         }
         .environmentObject(mapModel)
     }

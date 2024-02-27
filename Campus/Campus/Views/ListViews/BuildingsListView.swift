@@ -13,10 +13,12 @@ struct BuildingsListView: View {
     
     var body: some View {
         VStack {
-            List(sortedBuildings, id: \.code, selection: $selectedBuildingCodes) { building in
+            ToggleButtonsView()
+            
+            List(filteredAndSortedBuildings, id: \.code, selection: $selectedBuildingCodes) { building in
                 Text(buildingDisplayName(building: building))
             }
-            .onChange(of: selectedBuildingCodes) { _, newSelection in
+            .onChange(of: selectedBuildingCodes) { _, _ in
                 updateMappedStatusForAllBuildings()
             }
             .onAppear {
@@ -26,8 +28,18 @@ struct BuildingsListView: View {
         }
     }
     
-    private var sortedBuildings: [Building] {
-        mapModel.buildings.sorted { $0.name < $1.name }
+    private var filteredAndSortedBuildings: [Building] {
+        let filteredBuildings: [Building]
+        switch mapModel.toggle {
+        case "F":
+            filteredBuildings = mapModel.buildings.filter { $0.favorite }
+        case "S":
+            filteredBuildings = mapModel.buildings.filter { $0.mapped }
+        default:
+            filteredBuildings = mapModel.buildings
+        }
+        
+        return filteredBuildings.sorted { $0.name < $1.name }
     }
     
     private func updateMappedStatusForAllBuildings() {
@@ -35,11 +47,9 @@ struct BuildingsListView: View {
         for index in updatedBuildings.indices {
             let isMapped = selectedBuildingCodes.contains(updatedBuildings[index].code)
             updatedBuildings[index].mapped = isMapped
-            
         }
         mapModel.updateBuildings(buildings: updatedBuildings)
     }
-    
     
     private func buildingDisplayName(building: Building) -> String {
         building.favorite ? "\(building.name) <3" : building.name
