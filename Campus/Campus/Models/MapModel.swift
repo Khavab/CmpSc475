@@ -147,4 +147,50 @@ class MapModel: ObservableObject {
         }
     }
     
+    func calculateRouteLocal(_ endBuilding: Building) {
+        guard let currentLocation = self.userLocation else {
+            print("Current location is not available.")
+            return
+        }
+
+        let startCoordinate = currentLocation.coordinate
+        let endCoordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(endBuilding.latitude), longitude: CLLocationDegrees(endBuilding.longitude))
+        
+        let startPlacemark = MKPlacemark(coordinate: startCoordinate)
+        let endPlacemark = MKPlacemark(coordinate: endCoordinate)
+        
+        let startItem = MKMapItem(placemark: startPlacemark)
+        let endItem = MKMapItem(placemark: endPlacemark)
+        
+        let directionRequest = MKDirections.Request()
+        directionRequest.source = startItem
+        directionRequest.destination = endItem
+        
+        let directions = MKDirections(request: directionRequest)
+        directions.calculate { [weak self] (response, error) in
+            guard let self = self else { return }
+            
+            if let error = error {
+                print("Error getting directions: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let response = response, let route = response.routes.first else {
+                print("No routes found")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.deselect()
+                
+                if let endIndex = self.buildings.firstIndex(where: { $0.id == endBuilding.id }) {
+                    self.buildings[endIndex].mapped = true
+                }
+                
+                self.route = [route]
+            }
+        }
+    }
+
+    
 }

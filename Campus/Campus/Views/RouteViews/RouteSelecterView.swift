@@ -48,9 +48,16 @@ struct RouteSelecterView: View {
     }
     
     private func submitAction() {
-        guard let startBuilding = start, let endBuilding = end else { return }
-        mapModel.calculateRoute(from: startBuilding, to: endBuilding)
+        guard let endBuilding = end else { return }
+
+        if CurrentLocation {
+            mapModel.calculateRouteLocal(endBuilding)
+        } else {
+            guard let startBuilding = start else { return }
+            mapModel.calculateRoute(from: startBuilding, to: endBuilding)
+        }
     }
+
     
     private var isButtonDisabled: Bool {
         (start == nil && !CurrentLocation) || end == nil
