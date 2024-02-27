@@ -1,10 +1,3 @@
-//
-//  RouteSelecterView.swift
-//  Campus
-//
-//  Created by Shibli Nomani on 2/27/24.
-//
-
 import SwiftUI
 import MapKit
 import CoreLocation
@@ -13,12 +6,16 @@ struct RouteSelecterView: View {
     @EnvironmentObject var mapModel: MapModel
     @State private var start: Building?
     @State private var end: Building?
-    
+    @State private var CurrentLocation: Bool = false
+
     var body: some View {
         NavigationView {
             VStack {
+                
+
                 List {
-                    
+                    Toggle("Current Location", isOn: $CurrentLocation)
+                        .padding()
                     NavigationLink(destination: RouteListView(building: $start)) {
                         HStack {
                             Text("Start Building:")
@@ -27,7 +24,9 @@ struct RouteSelecterView: View {
                                 .foregroundColor(start == nil ? .blue : .primary)
                         }
                     }
+                    .disabled(CurrentLocation)
                     
+
                     NavigationLink(destination: RouteListView(building: $end)) {
                         HStack {
                             Text("End Building:")
@@ -36,13 +35,12 @@ struct RouteSelecterView: View {
                                 .foregroundColor(end == nil ? .green : .primary)
                         }
                     }
-                    
+
                     Button(action: submitAction) {
                         Text("Submit")
                             .foregroundColor(isButtonDisabled ? .gray : .primary)
                     }
                     .disabled(isButtonDisabled)
-                    
                 }
             }
         }
@@ -55,10 +53,9 @@ struct RouteSelecterView: View {
     }
     
     private var isButtonDisabled: Bool {
-        start == nil || end == nil
+        (start == nil && !CurrentLocation) || end == nil
     }
 }
-
 
 #Preview {
     RouteSelecterView()
