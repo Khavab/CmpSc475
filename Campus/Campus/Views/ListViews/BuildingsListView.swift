@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct BuildingsListView: View {
     @EnvironmentObject var mapModel: MapModel
@@ -35,6 +36,10 @@ struct BuildingsListView: View {
             filteredBuildings = mapModel.buildings.filter { $0.favorite }
         case "S":
             filteredBuildings = mapModel.buildings.filter { $0.mapped }
+        case "C":
+            filteredBuildings = mapModel.buildings.filter {
+                    isBuildingWithin50MetersOfUser(building: $0, userLocation: mapModel.userLocation)
+                }
         default:
             filteredBuildings = mapModel.buildings
         }
@@ -51,10 +56,17 @@ struct BuildingsListView: View {
         mapModel.updateBuildings(buildings: updatedBuildings)
     }
     
+    func isBuildingWithin50MetersOfUser(building: Building, userLocation: CLLocation?) -> Bool {
+        guard let userLocation = userLocation else { return false }
+        let buildingLocation = CLLocation(latitude: CLLocationDegrees(building.latitude), longitude: CLLocationDegrees(building.longitude))
+        return userLocation.distance(from: buildingLocation) <= 50
+    }
+    
     private func buildingDisplayName(building: Building) -> String {
         building.favorite ? "\(building.name) <3" : building.name
     }
 }
+
 
 #Preview {
     BuildingsListView()

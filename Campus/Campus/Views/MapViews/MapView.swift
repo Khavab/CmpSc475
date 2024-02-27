@@ -33,13 +33,13 @@ struct MapView: View {
                                 Image(systemName: "mappin.circle.fill")
                                     .resizable()
                                     .frame(width: 30, height: 30)
-                                    .foregroundColor(item.building?.favorite ?? false ? .blue : .red)
+                                    .foregroundColor(item.building?.favorite ?? false ? .green : .red)
                             }
                         } else {
                             Image(systemName: "person.circle.fill")
                                 .resizable()
-                                .frame(width: 25, height: 25)
-                                .foregroundColor(.green)
+                                .frame(width: 2500, height: 2500)
+                                .foregroundColor(.blue)
                         }
                     }
                 }
@@ -67,8 +67,7 @@ struct MapView: View {
             let userLocationAnnotation = MapAnnotationItem(coordinate: userLocation.coordinate, building: nil, isRoutePoint: false)
             points.append(userLocationAnnotation)
         }
-        
-        
+                
         return points
     }
     

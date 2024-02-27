@@ -70,6 +70,7 @@
 		F255B76B2B8DFF33001CBD69 /* RouteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListView.swift; sourceTree = "<group>"; };
 		F255B76D2B8E2287001CBD69 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		F255B76F2B8E296D001CBD69 /* RouteStepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteStepsView.swift; sourceTree = "<group>"; };
+		F255B7712B8E3F3E001CBD69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +121,7 @@
 		F255B71A2B7FDA52001CBD69 /* Campus */ = {
 			isa = PBXGroup;
 			children = (
+				F255B7712B8E3F3E001CBD69 /* Info.plist */,
 				F255B71B2B7FDA52001CBD69 /* CampusApp.swift */,
 				F255B74D2B848D31001CBD69 /* json */,
 				F255B7562B84D583001CBD69 /* Views */,
@@ -524,6 +526,9 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Campus/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Campus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -552,6 +557,9 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Campus/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Campus/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
