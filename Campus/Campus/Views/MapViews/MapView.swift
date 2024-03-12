@@ -24,10 +24,14 @@ struct CustomMapView: UIViewRepresentable {
         mapView.userTrackingMode = .follow
         mapView.mapType = mapType
         
+        context.coordinator.setMapView(mapView)
+
         updateAnnotations(for: mapView)
-        
+
         return mapView
     }
+
+
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
         uiView.mapType = mapType
@@ -55,11 +59,36 @@ struct CustomMapView: UIViewRepresentable {
     class Coordinator: NSObject, MKMapViewDelegate {
         var parent: CustomMapView
         @Binding var selectedBuilding: Building?
-        
+        weak var mapView: MKMapView?
+
         init(_ parent: CustomMapView, selectedBuilding: Binding<Building?>) {
             self.parent = parent
             self._selectedBuilding = selectedBuilding
         }
+        
+        func setMapView(_ mapView: MKMapView) {
+                self.mapView = mapView
+
+                let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(addAnnotation(_:)))
+                mapView.addGestureRecognizer(longPressRecognizer)
+            }
+        
+        @objc func addAnnotation(_ gestureRecognizer: UILongPressGestureRecognizer) {
+
+            guard let mapView = mapView else {
+                return
+            }
+
+            if gestureRecognizer.state == .began {
+                let point = gestureRecognizer.location(in: mapView)
+                let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
+
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                mapView.addAnnotation(annotation)
+            }
+        }
+
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             if annotation is MKUserLocation {
@@ -120,6 +149,27 @@ struct MapView: View {
         }
     }
 }
+
+struct AnnotationActionSheet: View {
+    let annotation: MKAnnotation
+    var removeAnnotation: () -> Void
+
+    var body: some View {
+        VStack {
+            Button("Action 1") {
+                print("Action 1 performed")
+            }
+            .padding()
+
+            Button("Delete Annotation") {
+                removeAnnotation()
+            }
+            .padding()
+            .foregroundColor(.red)
+        }
+    }
+}
+
 
 struct MapAnnotationItem: Identifiable {
     let id = UUID()
