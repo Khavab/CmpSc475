@@ -8,71 +8,116 @@
 import SwiftUI
 import MapKit
 
+struct CustomMapView: UIViewRepresentable {
+    @EnvironmentObject var mapModel: MapModel
+    @Binding var selectedBuilding: Building?
+    @Binding var mapType: MKMapType
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self, selectedBuilding: $selectedBuilding)
+    }
+    
+    func makeUIView(context: Context) -> MKMapView {
+        let mapView = MKMapView()
+        mapView.delegate = context.coordinator
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .follow
+        mapView.mapType = mapType
+        
+        updateAnnotations(for: mapView)
+        
+        return mapView
+    }
+    
+    func updateUIView(_ uiView: MKMapView, context: Context) {
+        uiView.mapType = mapType
+        updateAnnotations(for: uiView)
+    }
+    
+    private func updateAnnotations(for mapView: MKMapView) {
+        mapView.removeAnnotations(mapView.annotations)
+        
+        let buildingAnnotations = mapModel.buildings.filter { $0.mapped }.map { building -> MKPointAnnotation in
+            let annotation = MKPointAnnotation()
+            annotation.title = building.name
+            annotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(building.latitude), longitude: CLLocationDegrees(building.longitude))
+            return annotation
+        }
+        
+        mapView.addAnnotations(buildingAnnotations)
+        
+        if let route = mapModel.route.first {
+            let polyline = route.polyline
+            mapView.addOverlay(polyline)
+        }
+    }
+    
+    class Coordinator: NSObject, MKMapViewDelegate {
+        var parent: CustomMapView
+        @Binding var selectedBuilding: Building?
+        
+        init(_ parent: CustomMapView, selectedBuilding: Binding<Building?>) {
+            self.parent = parent
+            self._selectedBuilding = selectedBuilding
+        }
+        
+        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+            if annotation is MKUserLocation {
+                return nil
+            }
+            
+            let identifier = "Building"
+            var view: MKMarkerAnnotationView
+            
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+            } else {
+                view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                view.canShowCallout = true
+                view.calloutOffset = CGPoint(x: -5, y: 5)
+                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            }
+            
+            view.markerTintColor = (annotation.title != nil) == parent.mapModel.favorites ? .green : .red
+            
+            return view
+        }
+        
+        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+            if let buildingName = view.annotation?.title ?? "", let building = parent.mapModel.buildings.first(where: { $0.name == buildingName }) {
+                selectedBuilding = building
+            }
+        }
+        
+        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+            if overlay is MKPolyline {
+                let renderer = MKPolylineRenderer(overlay: overlay)
+                renderer.strokeColor = .blue
+                renderer.lineWidth = 5
+                return renderer
+            }
+            return MKOverlayRenderer()
+        }
+    }
+}
+
 struct MapView: View {
     @EnvironmentObject var mapModel: MapModel
     @State private var selectedBuilding: Building?
+    @Binding var mapType: MKMapType
     
     var body: some View {
         ZStack {
-            Map(
-                coordinateRegion: .constant(MKCoordinateRegion(
-                    center: CLLocationCoordinate2D(latitude: 40.8036202287245, longitude: -77.8578992214907),
-                    span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-                )),
-                showsUserLocation: true,
-                annotationItems: annotations) { item in
-                    MapAnnotation(coordinate: item.coordinate) {
-                        if item.isRoutePoint {
-                            Circle()
-                                .fill(Color.blue)
-                                .frame(width: 5, height: 5)
-                        } else if let _ = item.building {
-                            Button(action: {
-                                selectedBuilding = item.building
-                            }) {
-                                Image(systemName: "mappin.circle.fill")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                                    .foregroundColor(item.building?.favorite ?? false ? .green : .red)
-                            }
-                        } else {
-                            Image(systemName: "person.circle.fill")
-                                .resizable()
-                                .frame(width: 2500, height: 2500)
-                                .foregroundColor(.blue)
-                        }
-                    }
-                }
+            CustomMapView(selectedBuilding: $selectedBuilding, mapType: $mapType)
+                .ignoresSafeArea()
+                .environmentObject(mapModel)
         }
         .sheet(item: $selectedBuilding) { building in
             BuildingDetailsView(building: building)
                 .presentationDetents(building.photo.isEmpty ? [.height(120)] : [.height(320)])
                 .environmentObject(mapModel)
         }
-    }
-    
-    private var annotations: [MapAnnotationItem] {
-        var points: [MapAnnotationItem] = mappedBuildings.map { MapAnnotationItem(coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees($0.latitude), longitude: CLLocationDegrees($0.longitude)), building: $0, isRoutePoint: false) }
-        
-        if let route = mapModel.route.first {
-            let routePoints = route.polyline.points()
-            for i in 0..<route.polyline.pointCount {
-                let point = routePoints[i]
-                let coordinate = point.coordinate
-                points.append(MapAnnotationItem(coordinate: coordinate, building: nil, isRoutePoint: true))
-            }
-        }
-        
-        if let userLocation = mapModel.userLocation {
-            let userLocationAnnotation = MapAnnotationItem(coordinate: userLocation.coordinate, building: nil, isRoutePoint: false)
-            points.append(userLocationAnnotation)
-        }
-                
-        return points
-    }
-    
-    private var mappedBuildings: [Building] {
-        mapModel.buildings.filter { $0.mapped }
     }
 }
 
