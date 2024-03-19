@@ -13,12 +13,14 @@ struct PokedexRow: View {
     var body: some View {
         HStack {
             Text(String(pokemon.id))
+                .font(.footnote)
             Spacer()
             
             Text(pokemon.name)
+                .bold()
             Spacer()
             
-            PokemonImage(id: pokemon.id)
+            PokemonImage(pokemon: pokemon)
         }
         .padding(.horizontal, 10)
     }

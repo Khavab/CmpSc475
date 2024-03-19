@@ -17,6 +17,7 @@ struct ContentView: View {
                     NavigationLink(destination: PokemonView(pokemon: pokemon)){
                         PokedexRow(pokemon: pokemon)
                     }
+                    
                 }
             }
             .listStyle(.plain)

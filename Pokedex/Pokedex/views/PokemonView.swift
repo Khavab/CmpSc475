@@ -11,7 +11,47 @@ struct PokemonView: View {
     var pokemon: Pokemon
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            PokemonImage(pokemon: pokemon)
+            
+            HStack {
+                Spacer()
+                Text("Height")
+                    .bold()
+                Spacer()
+                Text("Weight")
+                    .bold()
+                Spacer()
+            }
+            
+            HStack {
+                Spacer()
+                Text(String(pokemon.height) + " m")
+                    .font(.title)
+                    .bold()
+                Spacer()
+                Text(String(pokemon.weight) + " kg")
+                    .font(.title)
+                    .bold()
+                Spacer()
+            }
+            
+            Text("Types")
+                .bold()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading)
+            
+            TypesView(types: pokemon.types)
+            
+            Text("Weaknesses")
+                .bold()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading)
+            
+            TypesView(types: pokemon.weaknesses)
+        }
+        .navigationTitle(pokemon.name)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
