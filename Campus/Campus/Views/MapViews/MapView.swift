@@ -11,10 +11,11 @@ import MapKit
 struct CustomMapView: UIViewRepresentable {
     @EnvironmentObject var mapModel: MapModel
     @Binding var selectedBuilding: Building?
+    @Binding var selectedPointAnnotation: MKPointAnnotation?
     @Binding var mapType: MKMapType
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(self, selectedBuilding: $selectedBuilding)
+        Coordinator(self, selectedBuilding: $selectedBuilding, selectedPointAnnotation: $selectedPointAnnotation)
     }
     
     func makeUIView(context: Context) -> MKMapView {
@@ -31,8 +32,6 @@ struct CustomMapView: UIViewRepresentable {
         return mapView
     }
 
-
-    
     func updateUIView(_ uiView: MKMapView, context: Context) {
         uiView.mapType = mapType
         updateAnnotations(for: uiView)
@@ -59,11 +58,13 @@ struct CustomMapView: UIViewRepresentable {
     class Coordinator: NSObject, MKMapViewDelegate {
         var parent: CustomMapView
         @Binding var selectedBuilding: Building?
+        @Binding var selectedPointAnnotation: MKPointAnnotation?
         weak var mapView: MKMapView?
 
-        init(_ parent: CustomMapView, selectedBuilding: Binding<Building?>) {
+        init(_ parent: CustomMapView, selectedBuilding: Binding<Building?>, selectedPointAnnotation: Binding<MKPointAnnotation?>) {
             self.parent = parent
             self._selectedBuilding = selectedBuilding
+            self._selectedPointAnnotation = selectedPointAnnotation
         }
         
         func setMapView(_ mapView: MKMapView) {
@@ -135,37 +136,39 @@ struct MapView: View {
     @EnvironmentObject var mapModel: MapModel
     @State private var selectedBuilding: Building?
     @Binding var mapType: MKMapType
-    
+    @State private var selectedPointAnnotation: MKPointAnnotation?
+
     var body: some View {
         ZStack {
-            CustomMapView(selectedBuilding: $selectedBuilding, mapType: $mapType)
+            CustomMapView(selectedBuilding: $selectedBuilding, selectedPointAnnotation: $selectedPointAnnotation, mapType: $mapType)
                 .ignoresSafeArea()
                 .environmentObject(mapModel)
+
+            //if selectedPointAnnotation != nil {
+                VStack {
+                    Spacer()
+                    Button(action: {
+                        if let annotationCoordinate = selectedPointAnnotation?.coordinate {
+                            mapModel.calculateRouteAnno(annotationCoordinate)
+                        }
+                    }) {
+                        HStack {
+                            Image(systemName: "arrow.triangle.turn.up.right.diamond")
+                            Text("Calculate Route")
+                        }
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                    }
+                    .padding(.bottom)
+                }
+            //}
         }
         .sheet(item: $selectedBuilding) { building in
             BuildingDetailsView(building: building)
                 .presentationDetents(building.photo.isEmpty ? [.height(120)] : [.height(320)])
                 .environmentObject(mapModel)
-        }
-    }
-}
-
-struct AnnotationActionSheet: View {
-    let annotation: MKAnnotation
-    var removeAnnotation: () -> Void
-
-    var body: some View {
-        VStack {
-            Button("Action 1") {
-                print("Action 1 performed")
-            }
-            .padding()
-
-            Button("Delete Annotation") {
-                removeAnnotation()
-            }
-            .padding()
-            .foregroundColor(.red)
         }
     }
 }

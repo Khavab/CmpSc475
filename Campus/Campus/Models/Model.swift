@@ -17,7 +17,7 @@ struct Building: Identifiable, Codable, Equatable {
     let photo: String
     var mapped: Bool
     var favorite: Bool
-    
+
     enum CodingKeys: String, CodingKey {
         case latitude
         case longitude

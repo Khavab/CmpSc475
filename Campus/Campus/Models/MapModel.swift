@@ -191,6 +191,47 @@ class MapModel: ObservableObject {
             }
         }
     }
+    
+    func calculateRouteAnno(_ location: CLLocationCoordinate2D) {
+        guard let currentLocation = self.userLocation else {
+            print("Current location is not available.")
+            return
+        }
+
+        let startCoordinate = currentLocation.coordinate
+        let endCoordinate = location
+        
+        let startPlacemark = MKPlacemark(coordinate: startCoordinate)
+        let endPlacemark = MKPlacemark(coordinate: endCoordinate)
+        
+        let startItem = MKMapItem(placemark: startPlacemark)
+        let endItem = MKMapItem(placemark: endPlacemark)
+        
+        let directionRequest = MKDirections.Request()
+        directionRequest.source = startItem
+        directionRequest.destination = endItem
+        
+        let directions = MKDirections(request: directionRequest)
+        directions.calculate { [weak self] (response, error) in
+            guard let self = self else { return }
+            
+            if let error = error {
+                print("Error getting directions: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let response = response, let route = response.routes.first else {
+                print("No routes found")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.deselect()
+                
+                self.route = [route]
+            }
+        }
+    }
 
     
 }

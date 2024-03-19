@@ -37,7 +37,7 @@ struct ContentView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     
                     MapButtonsView()
-                        .padding(.bottom)
+                        .padding(.bottom, 50)
                 }
             }
         }
