@@ -12,7 +12,7 @@ struct PokemonView: View {
     
     var body: some View {
         VStack {
-            PokemonImage(pokemon: pokemon)
+            PokemonImage(pokemon: pokemon, inRow: false)
             
             HStack {
                 Spacer()

@@ -20,7 +20,7 @@ struct PokedexRow: View {
                 .bold()
             Spacer()
             
-            PokemonImage(pokemon: pokemon)
+            PokemonImage(pokemon: pokemon, inRow: true)
         }
         .padding(.horizontal, 10)
     }
