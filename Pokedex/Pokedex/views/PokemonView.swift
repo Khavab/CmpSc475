@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PokemonView: View {
+    @EnvironmentObject var pokedex: PokedexModel
     var pokemon: Pokemon
     
     var body: some View {
@@ -36,19 +37,11 @@ struct PokemonView: View {
                 Spacer()
             }
             
-            Text("Types")
-                .bold()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading)
+            TypesView(text: "Types", types: pokemon.types)
             
-            TypesView(types: pokemon.types)
+            TypesView(text: "Weakness", types: pokemon.weaknesses)
             
-            Text("Weaknesses")
-                .bold()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading)
-            
-            TypesView(types: pokemon.weaknesses)
+            EvolutionsView(pokemon: pokemon)
         }
         .navigationTitle(pokemon.name)
         .navigationBarTitleDisplayMode(.inline)

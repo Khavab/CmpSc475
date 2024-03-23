@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct TypesView: View {
+    var text: String
     var types: [PokemonType]
+    
     var body: some View {
+        Text(text)
+            .bold()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading)
+        
         ScrollView(.horizontal) {
             HStack {
                 ForEach(types, id: \.id) { type in

@@ -9,7 +9,8 @@ import Foundation
 
 class PokedexModel: ObservableObject {
     @Published var pokemon: [Pokemon] = []
-
+    @Published var captured: [Bool] = []
+    
     init() {
         let decoder = JSONDecoder()
 
@@ -25,5 +26,19 @@ class PokedexModel: ObservableObject {
         } catch {
             print("Error decoding pokedex from bundle: \(error)")
         }
+        
+        self.captured = [Bool](repeating: false, count: self.pokemon.count)
+    }
+    
+    func catchRelease(pokemon: Pokemon) {
+        self.captured[pokemon.id] = !self.captured[pokemon.id]
+    }
+    
+    func nextEvo(pokemon: Pokemon) -> Pokemon {
+        return self.pokemon[pokemon.next_evolution[0] - 1]
+    }
+    
+    func prevEvo(pokemon: Pokemon) -> Pokemon {
+        return self.pokemon[pokemon.prev_evolution[pokemon.prev_evolution.count - 1] - 1]
     }
 }

@@ -14,7 +14,7 @@ struct ContentView: View {
         NavigationStack {
             List {
                 ForEach(pokedexModel.pokemon, id: \.id) { pokemon in
-                    NavigationLink(destination: PokemonView(pokemon: pokemon)){
+                    NavigationLink(destination: PokemonView(pokemon: pokemon)) {
                         PokedexRow(pokemon: pokemon)
                     }
                     
@@ -24,6 +24,7 @@ struct ContentView: View {
             .navigationTitle("Pokedex")
             .navigationBarTitleDisplayMode(.inline)
         }
+        .environmentObject(pokedexModel)
     }
 }
 
