@@ -11,13 +11,19 @@ struct ContentView: View {
     @StateObject var pokedexModel = PokedexModel()
     
     var body: some View {
+
         NavigationStack {
             List {
-                ForEach(pokedexModel.pokemon, id: \.id) { pokemon in
-                    NavigationLink(destination: PokemonView(pokemon: pokemon)) {
-                        PokedexRow(pokemon: pokemon)
+                if pokedexModel.capCount != 0 {
+                    Section(header: Text("Captured")) {
+                        CapturedView()
                     }
-                    
+                }
+                
+                ForEach(PokemonType.allCases, id: \.self) { type in
+                    Section(header: Text(type.rawValue)) {
+                        PokemonTypesRow(type: type)
+                    }
                 }
             }
             .listStyle(.plain)

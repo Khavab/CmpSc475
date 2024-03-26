@@ -22,13 +22,17 @@ struct EvolutionsView: View {
             .background(pokedex.captured[pokemon.id] ? .red : .green, in: Capsule())
             
             if pokemon.next_evolution.count != 0 {
-                PokemonImage(pokemon: pokedex.nextEvo(pokemon: pokemon), inRow: true)
-                    .offset(CGSize(width: UIScreen.main.bounds.width * 3 / 7, height: 0))
+                NavigationLink(destination: PokemonView(pokemon: pokedex.nextEvo(pokemon: pokemon))) {
+                    PokemonImage(pokemon: pokedex.nextEvo(pokemon: pokemon), inRow: true)
+                }
+                .offset(CGSize(width: UIScreen.main.bounds.width * 3 / 7, height: 0))
             }
             
             if pokemon.prev_evolution.count != 0 {
-                PokemonImage(pokemon: pokedex.prevEvo(pokemon: pokemon), inRow: true)
-                    .offset(CGSize(width: -UIScreen.main.bounds.width * 3 / 7, height: 0))
+                NavigationLink(destination: PokemonView(pokemon: pokedex.prevEvo(pokemon: pokemon))) {
+                    PokemonImage(pokemon: pokedex.prevEvo(pokemon: pokemon), inRow: true)
+                }
+                .offset(CGSize(width: -UIScreen.main.bounds.width * 3 / 7, height: 0))
             }
         }
     }
