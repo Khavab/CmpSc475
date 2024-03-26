@@ -28,4 +28,5 @@ struct PokedexRow: View {
 
 #Preview {
     ContentView()
+        .environmentObject(PokedexModel())
 }

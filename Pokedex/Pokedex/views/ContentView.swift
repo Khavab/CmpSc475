@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var pokedexModel = PokedexModel()
+    @EnvironmentObject var pokedexModel: PokedexModel
     
     var body: some View {
 
@@ -36,4 +36,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(PokedexModel())
 }

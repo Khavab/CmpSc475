@@ -44,4 +44,5 @@ struct PokemonImage: View {
 
 #Preview {
     ContentView()
+        .environmentObject(PokedexModel())
 }

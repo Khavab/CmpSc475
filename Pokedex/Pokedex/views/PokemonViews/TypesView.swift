@@ -41,4 +41,5 @@ struct TypeView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(PokedexModel())
 }

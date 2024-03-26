@@ -40,4 +40,5 @@ struct EvolutionsView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(PokedexModel())
 }

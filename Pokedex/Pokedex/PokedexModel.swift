@@ -20,7 +20,22 @@ class PokedexModel: ObservableObject {
             return
         }
         
-        self.captured = [Bool](repeating: false, count: self.pokemon.count + 1)
+        do {
+            let data = try Data(contentsOf: localURL)
+            self.pokemon = try decoder.decode([Pokemon].self, from: data)
+            print("Loaded pokedex from bundle")
+        } catch {
+            print("Error decoding pokedex from bundle: \(error)")
+        }
+        
+        do {
+            let url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("captured.json")
+            let data = try Data(contentsOf: url)
+            self.captured = try decoder.decode([Bool].self, from: data)
+            self.capCount = self.captured.filter { $0 }.count
+        } catch {
+            self.captured = [Bool](repeating: false, count: self.pokemon.count + 1)
+        }
     }
     
     func catchRelease(pokemon: Pokemon) {

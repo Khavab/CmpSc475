@@ -50,4 +50,5 @@ struct PokemonView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(PokedexModel())
 }

@@ -29,4 +29,5 @@ struct CapturedView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(PokedexModel())
 }
