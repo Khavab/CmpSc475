@@ -9,28 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var pokedexModel: PokedexModel
+    @StateObject var filterModel = FilterModel()
     
     var body: some View {
-
         NavigationStack {
-            List {
-                if pokedexModel.capCount != 0 {
-                    Section(header: Text("Captured")) {
-                        CapturedView()
-                    }
-                }
+            VStack {
+                ButtonsView()
                 
-                ForEach(PokemonType.allCases, id: \.self) { type in
-                    Section(header: Text(type.rawValue)) {
-                        PokemonTypesRow(type: type)
-                    }
-                }
+                TypeRowsView()
             }
-            .listStyle(.plain)
-            .navigationTitle("Pokedex")
-            .navigationBarTitleDisplayMode(.inline)
         }
         .environmentObject(pokedexModel)
+        .environmentObject(filterModel)
     }
 }
 

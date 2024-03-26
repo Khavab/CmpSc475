@@ -36,6 +36,11 @@ class PokedexModel: ObservableObject {
         } catch {
             self.captured = [Bool](repeating: false, count: self.pokemon.count + 1)
         }
+        
+        //for type in PokemonType.allCases {
+        //    self.filters[type] = false
+        //}
+        //print(self.filters)
     }
     
     func catchRelease(pokemon: Pokemon) {

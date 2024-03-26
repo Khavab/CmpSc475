@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CapturedView: View {
     @EnvironmentObject var pokedexModel: PokedexModel
+    @EnvironmentObject var filterModel: FilterModel
     
     var body: some View {
         ScrollView(.horizontal) {
