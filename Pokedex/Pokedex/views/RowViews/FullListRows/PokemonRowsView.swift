@@ -13,7 +13,11 @@ struct PokemonRowsView: View {
     
     var body: some View {
         List {
-            ForEach(pokedexModel.pokemon, id: \.id) { pokemon in
+            ForEach(pokedexModel.pokemon.filter { pokemon in
+                pokemon.types.contains(where: { type in
+                    filterModel.filters[type] == true
+                })
+            }, id: \.id) { pokemon in
                 NavigationLink(destination: PokemonView(pokemon: pokemon)){
                     PokemonRow(pokemon: pokemon)
                 }

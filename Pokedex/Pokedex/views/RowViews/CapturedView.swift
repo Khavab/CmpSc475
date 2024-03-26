@@ -14,7 +14,11 @@ struct CapturedView: View {
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack {
-                ForEach(pokedexModel.pokemon, id: \.id) { pokemon in
+                ForEach(pokedexModel.pokemon.filter { pokemon in
+                    pokemon.types.contains(where: { type in
+                        filterModel.filters[type] == true
+                    })
+                }, id: \.id) { pokemon in
                     if pokedexModel.captured[pokemon.id] {
                         NavigationLink(destination: PokemonView(pokemon: pokemon)) {
                             PokemonImage(pokemon: pokemon, inRow: true)
